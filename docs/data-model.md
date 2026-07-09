@@ -13,6 +13,9 @@ flowchart TD
   E --> F["Typed Relations"]
   F --> G["Self-check Answers"]
   E --> H["Audit Items"]
+  J["Project Files"] --> K["Evidence Records"]
+  K --> E
+  K --> H
   I["Findings"] --> H
   I --> E
 ```
@@ -68,13 +71,48 @@ flowchart TD
 - `version`
 - `workspace`
 - `sources`
+- `projectFiles`
+- `evidenceRecords`
 - `entities`
 - `relations`
 - `findings`
 - `auditItems`
 - `wikiPages`
 
-## 4. Entity
+## 4. ProjectFile
+
+字段：
+
+- `id`
+- `name`
+- `path`
+- `kind`
+- `function`
+- `status`
+- `linkedEvidence`
+
+## 5. EvidenceRecord
+
+字段：
+
+- `id`
+- `title`
+- `sourceFile`
+- `evidenceType`
+- `coverage`
+- `confidence`
+- `summary`
+- `linkedEntities`
+- `gaps`
+- `suggestedActions`
+
+说明：
+
+- `coverage` 表示证据链覆盖状态，不是合规结论。
+- `confidence` 表示当前 evidence record 的资料完整度信号。
+- `linkedEntities` 用于连接要求、风险、控制和证据。
+
+## 6. Entity
 
 通用字段：
 
@@ -93,7 +131,7 @@ flowchart TD
 - `control`
 - `evidence`
 
-## 5. Relation
+## 7. Relation
 
 字段：
 
@@ -113,7 +151,7 @@ flowchart TD
 - `addresses_risk`
 - `checks_control`
 
-## 6. Finding
+## 8. Finding
 
 字段：
 
@@ -132,7 +170,7 @@ flowchart TD
 - `owner`
 - `dueDate`
 
-## 7. AuditItem
+## 9. AuditItem
 
 字段：
 
@@ -152,10 +190,9 @@ flowchart TD
 - `owner`
 - `dueDate`
 
-## 8. 数据隔离原则
+## 10. 数据隔离原则
 
 - 基础库为只读。
 - 项目工作区独立保存。
 - 真实项目资料不写入公开 demo 数据。
 - 标准索引仅保存元数据和派生信号。
-

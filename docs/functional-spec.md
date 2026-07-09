@@ -16,9 +16,32 @@
 - Standard docs 数量
 - 真实 Markdown 基础库领域分布
 - 近期风险焦点
-- 进入 Standards、Readiness 和 Chat 的入口
+- 进入 Workspace、Standards、Readiness 和 Chat 的入口
 
-### 1.2 Standards
+### 1.2 Workspace
+
+目的：让用户看到项目本地资料如何变成 evidence records，并识别证据缺口。
+
+功能：
+
+- 展示 project workspace 元信息。
+- 展示项目文件列表。
+- 选择项目文件后展示对应 evidence records。
+- 展示证据覆盖率：
+  - complete
+  - partial
+  - missing
+- 展示 evidence gap queue。
+- 展示 suggested actions。
+- 将 evidence records 关联到 clause、obligation、risk、control 等实体。
+
+交互规则：
+
+- 点击项目文件后 evidence records 更新。
+- 缺口队列按证据不足优先展示。
+- evidence record 的 coverage/confidence 不代表合规评分，只表示当前证据链完整度。
+
+### 1.3 Standards
 
 目的：让用户验证真实标准库是否能成为 LLM wiki 的基础。
 
@@ -43,7 +66,7 @@
 - 过滤后列表按 readiness score 降序。
 - 长标题必须换行，不得撑破布局。
 
-### 1.3 Readiness
+### 1.4 Readiness
 
 目的：把标准库信号转成可执行的自查准备工作。
 
@@ -67,7 +90,7 @@
 - 输出只能是 candidate，不得自动进入正式计划。
 - 场景生成逻辑应优先使用 requirement signals，其次使用 review prompts。
 
-### 1.4 Graph
+### 1.5 Graph
 
 目的：展示知识不是散点检索结果，而是可追溯关系链路。
 
@@ -78,7 +101,7 @@
 - 点击节点显示详情。
 - 节点详情展示来源引用和相关关系。
 
-### 1.5 Kanban
+### 1.6 Kanban
 
 目的：展示 findings 如何驱动自查计划候选。
 
@@ -96,7 +119,7 @@
 - rationale 或 description
 - owner、status、due date
 
-### 1.6 Chat
+### 1.7 Chat
 
 目的：回答自查问题，并保持合规边界。
 
@@ -131,7 +154,15 @@
 4. Standards 页面显示标准索引。
 5. `npm run lint:standards` 校验结构。
 
-### 2.2 自查计划候选流程
+### 2.2 项目证据工作区流程
+
+1. 用户选择本地项目工作区。
+2. 系统读取项目文件索引。
+3. 系统生成或加载 evidence records。
+4. 系统将 evidence records 关联到实体和风险。
+5. 用户查看 gap queue 并决定补证据动作。
+
+### 2.3 自查计划候选流程
 
 1. 输入 finding。
 2. 系统关联 related risks 和 controls。
@@ -139,7 +170,7 @@
 4. Kanban 展示候选项。
 5. 用户人工确认后进入正式自查计划。
 
-### 2.3 Readiness 场景自查流程
+### 2.4 Readiness 场景自查流程
 
 1. 用户选择标准或使用默认 selected standard。
 2. 用户选择 R&D、QA、RA 或供应商场景。
@@ -147,7 +178,7 @@
 4. 系统生成 checklist、evidence bundle 和 audit candidate preview。
 5. 用户人工确认是否进入正式自查计划。
 
-### 2.4 Chat 自查问答流程
+### 2.5 Chat 自查问答流程
 
 1. 用户输入问题。
 2. 系统识别意图和关键词。

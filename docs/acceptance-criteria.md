@@ -5,7 +5,7 @@
 ## 1. Demo 验收
 
 - 应用可通过 `npm run dev` 本地启动。
-- Dashboard、Standards、Readiness、Graph、Kanban、Chat 均可访问。
+- Dashboard、Workspace、Standards、Readiness、Graph、Kanban、Chat 均可访问。
 - 页面不依赖外部真实敏感数据。
 - 3-5 分钟内能讲清业务痛点、产品边界和演示流程。
 
@@ -22,14 +22,23 @@
 - `npm run lint:standards` 必须通过。
 - 标准索引不得复制大段标准正文。
 
-## 3. 知识图谱验收
+## 3. Workspace / Evidence 验收
+
+- Workspace 页面必须展示项目文件列表。
+- Workspace 页面必须展示 evidence records。
+- Workspace 页面必须展示 evidence coverage。
+- Workspace 页面必须展示 gap queue。
+- Evidence record 必须能关联到至少一个实体。
+- `npm run lint:schema` 必须校验 projectFiles 和 evidenceRecords。
+
+## 4. 知识图谱验收
 
 - `knowledge-base.json` 包含 entities、relations、findings、auditItems、wikiPages。
 - `npm run lint:schema` 必须通过。
 - Graph 页面能展示节点、关系和节点详情。
 - 节点详情必须展示来源引用。
 
-## 4. Readiness 验收
+## 5. Readiness 验收
 
 - Readiness 页面必须支持至少 4 个场景。
 - 页面必须展示 selected standard。
@@ -39,7 +48,7 @@
 - 页面必须生成 audit candidate preview。
 - 页面必须提示人工复核边界。
 
-## 5. Kanban 验收
+## 6. Kanban 验收
 
 - Kanban 必须包含四列：
   - Finding input
@@ -50,7 +59,7 @@
 - 自查计划候选必须包含 suggested checks 和 evidence needed。
 - 页面必须避免暗示正式批准。
 
-## 6. Chat 验收
+## 7. Chat 验收
 
 - Chat 输入默认问题后应返回结构化回答。
 - 回答必须包含：
@@ -60,6 +69,7 @@
   - evidence needed
   - sources
   - matched standard signals
+  - workspace evidence records
   - 人工复核边界
 - 回答不得包含：
   - “已合规”
@@ -67,7 +77,7 @@
   - “可直接提交”
   - “正式通过”
 
-## 7. 构建验收
+## 8. 构建验收
 
 以下命令必须全部通过：
 
@@ -78,11 +88,12 @@ npm run lint:schema
 npm run build
 ```
 
-## 8. 浏览器验收
+## 9. 浏览器验收
 
 人工或自动检查：
 
-- Sidebar 显示 Dashboard、Standards、Readiness、Graph、Kanban、Chat。
+- Sidebar 显示 Dashboard、Workspace、Standards、Readiness、Graph、Kanban、Chat。
+- Workspace 显示 project files、evidence records、coverage 和 gap queue。
 - Standards 至少显示 10 个标准卡片。
 - Standards 详情显示 checklist seed。
 - Readiness 显示 checklist、evidence bundle 和 audit candidate。
