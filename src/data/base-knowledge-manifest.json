@@ -1,0 +1,104 @@
+{
+  "generatedAt": "2026-07-09T15:20:11.700Z",
+  "sourceRoot": "base-knowledge",
+  "strategy": "base-knowledge-hash-manifest",
+  "totalDocuments": 12,
+  "documents": [
+    {
+      "id": "GB4793.1-2007",
+      "fileName": "GB4793.1-2007.md",
+      "sourcePath": "base-knowledge/GB4793.1-2007.md",
+      "hash": "abeebd529937",
+      "sizeKb": 203,
+      "headingCount": 120
+    },
+    {
+      "id": "GB9706.1-2020",
+      "fileName": "GB9706.1-2020.md",
+      "sourcePath": "base-knowledge/GB9706.1-2020.md",
+      "hash": "7bbab641c07f",
+      "sizeKb": 713,
+      "headingCount": 120
+    },
+    {
+      "id": "GBT42061-2022",
+      "fileName": "GBT42061-2022.md",
+      "sourcePath": "base-knowledge/GBT42061-2022.md",
+      "hash": "1d56a20a610b",
+      "sizeKb": 75,
+      "headingCount": 120
+    },
+    {
+      "id": "GBT42062-2022",
+      "fileName": "GBT42062-2022.md",
+      "sourcePath": "base-knowledge/GBT42062-2022.md",
+      "hash": "3636892e42c9",
+      "sizeKb": 82,
+      "headingCount": 105
+    },
+    {
+      "id": "ISO13485-2016(E)",
+      "fileName": "ISO13485-2016(E).md",
+      "sourcePath": "base-knowledge/ISO13485-2016(E).md",
+      "hash": "49c686870bb2",
+      "sizeKb": 107,
+      "headingCount": 120
+    },
+    {
+      "id": "ISO14971-2019(E)",
+      "fileName": "ISO14971-2019(E).md",
+      "sourcePath": "base-knowledge/ISO14971-2019(E).md",
+      "hash": "c127be8ac0ef",
+      "sizeKb": 105,
+      "headingCount": 120
+    },
+    {
+      "id": "ISOTR24971-2020(E)",
+      "fileName": "ISOTR24971-2020(E).md",
+      "sourcePath": "base-knowledge/ISOTR24971-2020(E).md",
+      "hash": "acd7caa0bcbc",
+      "sizeKb": 261,
+      "headingCount": 120
+    },
+    {
+      "id": "YYT1437-2023",
+      "fileName": "YYT1437-2023.md",
+      "sourcePath": "base-knowledge/YYT1437-2023.md",
+      "hash": "30f52bc10d54",
+      "sizeKb": 201,
+      "headingCount": 120
+    },
+    {
+      "id": "cmde-2022-7",
+      "fileName": "cmde-2022-7.md",
+      "sourcePath": "base-knowledge/cmde-2022-7.md",
+      "hash": "66a48842c202",
+      "sizeKb": 54,
+      "headingCount": 31
+    },
+    {
+      "id": "gmp-2025.zh",
+      "fileName": "gmp-2025.zh.md",
+      "sourcePath": "base-knowledge/gmp-2025.zh.md",
+      "hash": "688ea6a4558c",
+      "sizeKb": 45,
+      "headingCount": 16
+    },
+    {
+      "id": "nmpa-order-15.zh",
+      "fileName": "nmpa-order-15.zh.md",
+      "sourcePath": "base-knowledge/nmpa-order-15.zh.md",
+      "hash": "68f7a667d0f7",
+      "sizeKb": 8,
+      "headingCount": 1
+    },
+    {
+      "id": "nmpa-order-6.zh",
+      "fileName": "nmpa-order-6.zh.md",
+      "sourcePath": "base-knowledge/nmpa-order-6.zh.md",
+      "hash": "202340fc1fef",
+      "sizeKb": 9,
+      "headingCount": 1
+    }
+  ]
+}
