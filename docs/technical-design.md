@@ -109,6 +109,8 @@ flowchart TD
   B --> C["Source index"]
   C --> D["LLM wiki compiler"]
   D --> E["Entity extractor"]
+  K["Project workspace parser"] --> L["Evidence record builder"]
+  L --> F
   E --> F["Graph store"]
   D --> G["Vector index"]
   F --> H["RAG orchestrator"]
@@ -140,4 +142,4 @@ flowchart TD
 - 当前 graph 是静态布局，后续需要真实图布局引擎。
 - 当前 Chat 是规则匹配，后续需要 RAG/LLM。
 - 当前 Markdown 解析主要依靠标题和关键词，后续需要结构化条款解析。
-
+- 当前 evidence records 是样例数据，后续需要真实本地文件解析和人工确认工作流。

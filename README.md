@@ -63,5 +63,4 @@ npm run kb:compile -- /path/to/markdown-standards
 - [数据模型](docs/data-model.md)
 - [技术设计](docs/technical-design.md)
 - [验收标准](docs/acceptance-criteria.md)
-- [5 小时迭代路线](docs/iteration-roadmap.md)
 - [演示讲稿](docs/demo-script.md)

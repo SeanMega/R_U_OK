@@ -41,6 +41,7 @@ R_U_OK 不做：
 
 - Standard source：只读标准、法规、SOP、模板、内部要求。
 - Project source：用户本地项目资料、报告、记录、台账。
+- Evidence record：从项目资料中抽取或登记的证据记录，包含覆盖度、缺口和建议动作。
 - Wiki page：由来源编译出的稳定知识页。
 - Entity：clause、obligation、risk、control、evidence、finding、audit_item。
 - Relation：实体之间的 typed edge。
@@ -51,6 +52,7 @@ R_U_OK 不做：
 MVP 是本地 Web 应用：
 
 - Dashboard：产品全局概览和演示入口。
+- Workspace：项目文件、证据记录、覆盖率和缺口队列。
 - Standards：真实 Markdown 标准库 workbench。
 - Readiness：把标准信号转成场景化 checklist、证据包和自查计划候选。
 - Graph：要求、风险、控制、证据的关系链路。
@@ -72,6 +74,7 @@ MVP 是本地 Web 应用：
 功能成功：
 
 - 能导入 50+ 份 Markdown 标准并生成索引。
+- 能展示项目工作区、项目文件和 evidence records。
 - 能展示标准领域、要求信号和候选实体。
 - 能按 R&D、QA、RA、供应商等场景生成 readiness checklist 和 evidence bundle。
 - 能展示 typed graph。

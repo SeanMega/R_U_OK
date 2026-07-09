@@ -8,6 +8,7 @@ import {
   ClipboardList,
   FileSearch,
   FileText,
+  FolderOpen,
   GitFork,
   LayoutDashboard,
   ListChecks,
@@ -93,13 +94,38 @@ type WikiPage = {
 
 type KnowledgeBase = {
   version: string;
-  workspace: { id: string; name: string; mode: string; boundary: string };
+  workspace: { id: string; name: string; mode: string; boundary: string; owner: string; status: string; sourceRoot: string };
+  projectFiles: ProjectFile[];
+  evidenceRecords: EvidenceRecord[];
   sources: Source[];
   entities: Entity[];
   relations: Relation[];
   findings: Finding[];
   auditItems: AuditItem[];
   wikiPages: WikiPage[];
+};
+
+type ProjectFile = {
+  id: string;
+  name: string;
+  path: string;
+  kind: string;
+  function: string;
+  status: string;
+  linkedEvidence: string[];
+};
+
+type EvidenceRecord = {
+  id: string;
+  title: string;
+  sourceFile: string;
+  evidenceType: string;
+  coverage: "complete" | "partial" | "missing";
+  confidence: number;
+  summary: string;
+  linkedEntities: string[];
+  gaps: string[];
+  suggestedActions: string[];
 };
 
 type StandardDocument = {
@@ -135,6 +161,7 @@ const standardIndex = standardIndexData as StandardIndex;
 
 const navItems = [
   { id: "dashboard", label: "Dashboard", icon: LayoutDashboard },
+  { id: "workspace", label: "Workspace", icon: FolderOpen },
   { id: "standards", label: "Standards", icon: FileText },
   { id: "readiness", label: "Readiness", icon: ListChecks },
   { id: "graph", label: "Graph", icon: Network },
@@ -240,6 +267,7 @@ function App() {
       <section className="main-panel">
         <Header />
         {active === "dashboard" && <Dashboard entityMap={entityMap} sourceMap={sourceMap} setActive={setActive} />}
+        {active === "workspace" && <Workspace entityMap={entityMap} />}
         {active === "standards" && (
           <Standards selectedStandard={selectedStandard} setSelectedStandardId={setSelectedStandardId} />
         )}
@@ -403,6 +431,115 @@ function Dashboard({
           <FileText size={17} />
           Open standards workbench
         </button>
+      </section>
+    </div>
+  );
+}
+
+function Workspace({ entityMap }: { entityMap: Map<string, Entity> }) {
+  const [selectedFileId, setSelectedFileId] = useState(kb.projectFiles[0]?.id ?? "");
+  const selectedFile = kb.projectFiles.find((file) => file.id === selectedFileId) ?? kb.projectFiles[0];
+  const records = kb.evidenceRecords.filter((record) => record.sourceFile === selectedFile?.id);
+  const allGaps = kb.evidenceRecords.flatMap((record) => record.gaps.map((gap) => ({ gap, record })));
+  const coverage = summarizeEvidenceCoverage(kb.evidenceRecords);
+
+  return (
+    <div className="workspace-layout">
+      <section className="workspace-header">
+        <div>
+          <p className="eyebrow">Project workspace</p>
+          <h2>{kb.workspace.name}</h2>
+          <p>{kb.workspace.sourceRoot} · {kb.workspace.owner} · {formatSignal(kb.workspace.status)}</p>
+        </div>
+        <div className="workspace-stats">
+          <Metric icon={FolderOpen} label="Project files" value={kb.projectFiles.length} tone="ink" />
+          <Metric icon={CheckCircle2} label="Evidence records" value={kb.evidenceRecords.length} tone="teal" />
+          <Metric icon={AlertTriangle} label="Open gaps" value={allGaps.length} tone="red" />
+        </div>
+      </section>
+
+      <section className="workspace-grid">
+        <div className="workspace-panel">
+          <div className="panel-heading">
+            <h3>Project files</h3>
+            <span>local workspace</span>
+          </div>
+          <div className="file-list">
+            {kb.projectFiles.map((file) => (
+              <button
+                key={file.id}
+                className={file.id === selectedFile.id ? "file-row selected" : "file-row"}
+                onClick={() => setSelectedFileId(file.id)}
+              >
+                <FileText size={18} />
+                <span>
+                  <strong>{file.name}</strong>
+                  <small>{file.function} · {formatSignal(file.kind)} · {formatSignal(file.status)}</small>
+                </span>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="workspace-panel">
+          <div className="panel-heading">
+            <h3>Evidence coverage</h3>
+            <span>{coverage.averageConfidence}% avg confidence</span>
+          </div>
+          <div className="coverage-stack">
+            {coverage.items.map((item) => (
+              <div className="coverage-row" key={item.label}>
+                <span>{item.label}</span>
+                <div><i style={{ width: `${item.percent}%` }} /></div>
+                <strong>{item.count}</strong>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="evidence-layout">
+        <div className="workspace-panel">
+          <div className="panel-heading">
+            <h3>Evidence records</h3>
+            <span>{selectedFile.name}</span>
+          </div>
+          <div className="evidence-card-list">
+            {records.map((record) => (
+              <article className={`evidence-card ${record.coverage}`} key={record.id}>
+                <div className="card-title-row">
+                  <strong>{record.title}</strong>
+                  <span>{formatSignal(record.coverage)} · {record.confidence}%</span>
+                </div>
+                <p>{record.summary}</p>
+                <div className="pill-row">
+                  {record.linkedEntities.map((id) => (
+                    <span key={id}>{entityMap.get(id)?.title ?? id}</span>
+                  ))}
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+
+        <aside className="workspace-panel">
+          <div className="panel-heading">
+            <h3>Gap queue</h3>
+            <span>evidence actions</span>
+          </div>
+          <div className="gap-list">
+            {allGaps.slice(0, 8).map(({ gap, record }) => (
+              <article className="gap-row" key={`${record.id}-${gap}`}>
+                <AlertTriangle size={16} />
+                <div>
+                  <strong>{gap}</strong>
+                  <p>{record.title}</p>
+                  <small>{record.suggestedActions.join(" · ")}</small>
+                </div>
+              </article>
+            ))}
+          </div>
+        </aside>
       </section>
     </div>
   );
@@ -788,6 +925,11 @@ function Chat({ entityMap, sourceMap }: { entityMap: Map<string, Entity>; source
               <div className="source-list">
                 {theme.sources.map((source) => <span key={source}>{source}</span>)}
               </div>
+              <div className="evidence-mini-list">
+                {theme.evidenceRecords.map((record) => (
+                  <span key={record.id}>{record.title} · {formatSignal(record.coverage)} · {record.confidence}%</span>
+                ))}
+              </div>
             </article>
           ))}
           <div className="standards-match">
@@ -841,19 +983,33 @@ function buildAnswer(question: string, entityMap: Map<string, Entity>, sourceMap
         const source = sourceMap.get(ref);
         return source ? `${source.id}: ${source.title}` : ref;
       });
+      const evidenceRecords = findEvidenceForAuditItem(item);
       return {
         title: `${severityLabel[item.priority]} · ${item.auditScope}`,
         rationale: item.rationale,
-        checks: [...item.suggestedChecks, `证据准备：${item.evidenceNeeded.join("、")}`],
+        checks: [
+          ...item.suggestedChecks,
+          `证据准备：${item.evidenceNeeded.join("、")}`,
+          `当前工作区证据：${evidenceRecords.map((record) => record.title).join("、") || "暂无直接证据记录"}`
+        ],
         sources: [
           ...sources,
           ...standardMatches.slice(0, 3).map((doc) => `${doc.id}: ${displayStandardTitle(doc)}`)
-        ]
+        ],
+        evidenceRecords
       };
     }),
     standardMatches,
     boundary: "以上内容是自查计划候选和证据准备提示，不代表项目已合规，也不能替代 QA/RA/审核员的正式判断。"
   };
+}
+
+function findEvidenceForAuditItem(item: AuditItem) {
+  const linkedIds = new Set([...item.sourceRisks, ...item.sourceControls, ...item.sourceClauses]);
+  return kb.evidenceRecords
+    .filter((record) => record.linkedEntities.some((id) => linkedIds.has(id)))
+    .sort((a, b) => a.confidence - b.confidence)
+    .slice(0, 4);
 }
 
 function findStandardMatches(question: string, items: AuditItem[]) {
@@ -968,6 +1124,21 @@ function buildStandardChecklist(doc: StandardDocument) {
   return [...checklist].slice(0, 6);
 }
 
+function summarizeEvidenceCoverage(records: EvidenceRecord[]) {
+  const total = records.length || 1;
+  const coverageTypes: Array<EvidenceRecord["coverage"]> = ["complete", "partial", "missing"];
+  const items = coverageTypes.map((coverage) => {
+    const count = records.filter((record) => record.coverage === coverage).length;
+    return {
+      label: formatSignal(coverage),
+      count,
+      percent: Math.round((count / total) * 100)
+    };
+  });
+  const averageConfidence = Math.round(records.reduce((sum, record) => sum + record.confidence, 0) / total);
+  return { items, averageConfidence };
+}
+
 function buildReadinessPlan(
   doc: StandardDocument,
   scenario: (typeof readinessScenarios)[number]
@@ -977,7 +1148,10 @@ function buildReadinessPlan(
   const baseChecks = buildStandardChecklist(doc);
   const signalChecks = matchedSignals.map((signal) => `针对 ${formatSignal(signal)} 抽查来源章节、项目证据和责任人确认记录。`);
   const checks = [...new Set([...baseChecks, ...signalChecks])].slice(0, 7);
-  const evidence = [...new Set([...scenario.evidence, ...inferEvidenceFromSignals(doc.requirementSignals)])].slice(0, 8);
+  const workspaceEvidence = findEvidenceBySignals(doc.requirementSignals).map(
+    (record) => `${record.title}（${formatSignal(record.coverage)} · ${record.confidence}%）`
+  );
+  const evidence = [...new Set([...workspaceEvidence, ...scenario.evidence, ...inferEvidenceFromSignals(doc.requirementSignals)])].slice(0, 8);
   const priority: Severity = fitScore >= 75 ? "critical" : fitScore >= 55 ? "high" : "medium";
 
   return {
@@ -992,6 +1166,33 @@ function buildReadinessPlan(
     checks,
     evidence
   };
+}
+
+function findEvidenceBySignals(signals: string[]) {
+  const interestedEntities = new Set<string>();
+  if (signals.includes("design_control") || signals.includes("verification_validation")) {
+    interestedEntities.add("OBL-TRACEABILITY");
+    interestedEntities.add("CTRL-TRACE-MATRIX");
+    interestedEntities.add("RSK-TRACE-GAP");
+  }
+  if (signals.includes("risk_file")) {
+    interestedEntities.add("OBL-TRACEABILITY");
+    interestedEntities.add("RSK-TRACE-GAP");
+  }
+  if (signals.includes("capa_feedback") || signals.includes("post_market")) {
+    interestedEntities.add("OBL-CAPA-EFFECTIVENESS");
+    interestedEntities.add("CTRL-CAPA-REVIEW");
+    interestedEntities.add("RSK-RECURRING-CAPA");
+  }
+  if (signals.includes("supplier_control")) {
+    interestedEntities.add("CTRL-SUPPLIER-GATE");
+    interestedEntities.add("RSK-SUPPLIER-CHANGE");
+  }
+  if (interestedEntities.size === 0) return [];
+  return kb.evidenceRecords
+    .filter((record) => record.linkedEntities.some((id) => interestedEntities.has(id)))
+    .sort((a, b) => a.confidence - b.confidence)
+    .slice(0, 4);
 }
 
 function inferEvidenceFromSignals(signals: string[]) {
