@@ -2,9 +2,10 @@ import { createHash } from "node:crypto";
 import { existsSync, mkdirSync, readFileSync, readdirSync, statSync, writeFileSync } from "node:fs";
 import { basename, join } from "node:path";
 
-const DEFAULT_SOURCE_ROOT = "/Users/sean/Downloads/Knowladge base/standard/markdown";
+const DEFAULT_SOURCE_ROOT = "/Users/sean/Documents/base knowledge";
 const sourceRoot = process.argv[2] || process.env.R_U_OK_STANDARD_MD_ROOT || DEFAULT_SOURCE_ROOT;
 const outputPath = new URL("../src/data/standard-index.json", import.meta.url);
+const manifestPath = new URL("../src/data/base-knowledge-manifest.json", import.meta.url);
 
 if (!existsSync(sourceRoot)) {
   throw new Error(`Markdown knowledge base folder not found: ${sourceRoot}`);
@@ -26,10 +27,26 @@ const index = {
   requirementSignals,
   documents
 };
+const manifest = {
+  generatedAt: index.generatedAt,
+  sourceRoot,
+  strategy: "base-knowledge-hash-manifest",
+  totalDocuments: documents.length,
+  documents: documents.map((doc) => ({
+    id: doc.id,
+    fileName: doc.fileName,
+    sourcePath: doc.sourcePath,
+    hash: doc.hash,
+    sizeKb: doc.sizeKb,
+    headingCount: doc.headingCount
+  }))
+};
 
 mkdirSync(new URL("../src/data", import.meta.url), { recursive: true });
 writeFileSync(outputPath, `${JSON.stringify(index, null, 2)}\n`);
+writeFileSync(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`);
 console.log(`Compiled ${documents.length} markdown standards into ${outputPath.pathname}`);
+console.log(`Wrote base knowledge manifest to ${manifestPath.pathname}`);
 
 function walk(dir) {
   return readdirSync(dir).flatMap((entry) => {
