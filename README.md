@@ -57,9 +57,7 @@ npm run kb:compile -- /path/to/markdown-standards
 
 ## 产品文档
 
-- [产品规格](docs/product-spec.md)
-- [扩展 PRD](docs/expanded-prd.md)
-- [功能规格](docs/functional-spec.md)
+- [设计输入 PRD](docs/design-input-prd.md)
 - [数据模型](docs/data-model.md)
 - [技术设计](docs/technical-design.md)
 - [验收标准](docs/acceptance-criteria.md)
