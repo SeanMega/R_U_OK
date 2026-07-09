@@ -1,0 +1,237 @@
+{
+  "version": "demo-0.2",
+  "workspace": {
+    "id": "ws-neuro-pump-demo",
+    "name": "一次性输注泵注册前自查样例",
+    "mode": "local-demo",
+    "boundary": "仅用于初步自查建议，不构成正式合规结论。"
+  },
+  "sources": [
+    {
+      "id": "SRC-ISO-13485-7-3",
+      "title": "ISO 13485:2016 7.3 Design and development",
+      "kind": "standard",
+      "path": "readonly/standards/iso-13485-2016.md"
+    },
+    {
+      "id": "SRC-NMPA-REG-DOSSIER",
+      "title": "NMPA 注册资料完整性要求样例",
+      "kind": "regulation",
+      "path": "readonly/regulations/nmpa-registration-sample.md"
+    },
+    {
+      "id": "SRC-QMS-CAPA",
+      "title": "QMS-SOP-08 CAPA 与偏差管理",
+      "kind": "sop",
+      "path": "readonly/sop/qms-sop-08-capa.md"
+    },
+    {
+      "id": "SRC-PROJ-VV-001",
+      "title": "项目验证报告草稿 VV-001",
+      "kind": "project_evidence",
+      "path": "workspace/neuro-pump/reports/VV-001.md"
+    },
+    {
+      "id": "SRC-FINDING-AUD-2026-04",
+      "title": "2026 Q2 内审发现摘录",
+      "kind": "finding",
+      "path": "workspace/neuro-pump/findings/internal-audit-q2.md"
+    }
+  ],
+  "entities": [
+    {
+      "id": "CLA-7-3-9",
+      "type": "clause",
+      "title": "设计开发更改控制",
+      "summary": "设计变更应经过评审、验证或确认，并在实施前获得批准。",
+      "severity": "high",
+      "sourceRefs": ["SRC-ISO-13485-7-3"]
+    },
+    {
+      "id": "CLA-REG-TECH-FILE",
+      "type": "clause",
+      "title": "注册资料技术文件完整性",
+      "summary": "注册提交资料应能支持产品安全性、有效性和声明一致性。",
+      "severity": "critical",
+      "sourceRefs": ["SRC-NMPA-REG-DOSSIER"]
+    },
+    {
+      "id": "OBL-TRACEABILITY",
+      "type": "obligation",
+      "title": "需求-风险-验证可追溯",
+      "summary": "用户需求、设计输入、风险控制、验证项目和结论之间应保持可追溯。",
+      "severity": "critical",
+      "sourceRefs": ["SRC-ISO-13485-7-3", "SRC-NMPA-REG-DOSSIER"]
+    },
+    {
+      "id": "OBL-CAPA-EFFECTIVENESS",
+      "type": "obligation",
+      "title": "CAPA 有效性验证",
+      "summary": "纠正预防措施应定义根因、措施、负责人、期限和有效性确认。",
+      "severity": "high",
+      "sourceRefs": ["SRC-QMS-CAPA"]
+    },
+    {
+      "id": "RSK-TRACE-GAP",
+      "type": "risk",
+      "title": "验证证据链断点",
+      "summary": "报告结论与测试记录、风险控制或需求条目之间缺少明确引用。",
+      "severity": "critical",
+      "sourceRefs": ["SRC-PROJ-VV-001", "SRC-FINDING-AUD-2026-04"]
+    },
+    {
+      "id": "RSK-RECURRING-CAPA",
+      "type": "risk",
+      "title": "重复 CAPA 关闭质量不足",
+      "summary": "多个发现显示措施关闭后缺少有效性验证或复发监控。",
+      "severity": "high",
+      "sourceRefs": ["SRC-QMS-CAPA", "SRC-FINDING-AUD-2026-04"]
+    },
+    {
+      "id": "RSK-SUPPLIER-CHANGE",
+      "type": "risk",
+      "title": "供应商变更影响未评估",
+      "summary": "关键物料供应商变更与来料检验、质量协议、注册影响未形成闭环。",
+      "severity": "high",
+      "sourceRefs": ["SRC-NMPA-REG-DOSSIER"]
+    },
+    {
+      "id": "CTRL-TRACE-MATRIX",
+      "type": "control",
+      "title": "设计追溯矩阵",
+      "summary": "用矩阵连接需求、风险控制、验证样本、偏差和最终结论。",
+      "severity": "critical",
+      "sourceRefs": ["SRC-PROJ-VV-001"]
+    },
+    {
+      "id": "CTRL-CAPA-REVIEW",
+      "type": "control",
+      "title": "CAPA 有效性复核",
+      "summary": "在关闭前确认措施执行证据、趋势数据和复发监控计划。",
+      "severity": "high",
+      "sourceRefs": ["SRC-QMS-CAPA"]
+    },
+    {
+      "id": "CTRL-SUPPLIER-GATE",
+      "type": "control",
+      "title": "供应商变更准入门禁",
+      "summary": "供应商变更必须关联资质、质量协议、检验策略和注册影响评估。",
+      "severity": "high",
+      "sourceRefs": ["SRC-NMPA-REG-DOSSIER"]
+    },
+    {
+      "id": "EVD-VV-TRACE",
+      "type": "evidence",
+      "title": "VV-001 追溯矩阵草稿",
+      "summary": "覆盖 42 项需求，但 6 项风险控制缺少测试记录引用。",
+      "severity": "critical",
+      "sourceRefs": ["SRC-PROJ-VV-001"]
+    },
+    {
+      "id": "EVD-CAPA-LOG",
+      "type": "evidence",
+      "title": "Q2 CAPA 台账摘录",
+      "summary": "3 个 CAPA 关闭记录未附有效性确认截图或趋势复核结论。",
+      "severity": "high",
+      "sourceRefs": ["SRC-FINDING-AUD-2026-04"]
+    }
+  ],
+  "relations": [
+    { "id": "REL-001", "from": "CLA-7-3-9", "to": "OBL-TRACEABILITY", "type": "creates_obligation" },
+    { "id": "REL-002", "from": "CLA-REG-TECH-FILE", "to": "OBL-TRACEABILITY", "type": "creates_obligation" },
+    { "id": "REL-003", "from": "CLA-7-3-9", "to": "RSK-TRACE-GAP", "type": "identifies_risk" },
+    { "id": "REL-004", "from": "OBL-TRACEABILITY", "to": "CTRL-TRACE-MATRIX", "type": "satisfied_by" },
+    { "id": "REL-005", "from": "CTRL-TRACE-MATRIX", "to": "RSK-TRACE-GAP", "type": "mitigates" },
+    { "id": "REL-006", "from": "OBL-CAPA-EFFECTIVENESS", "to": "CTRL-CAPA-REVIEW", "type": "satisfied_by" },
+    { "id": "REL-007", "from": "CTRL-CAPA-REVIEW", "to": "RSK-RECURRING-CAPA", "type": "mitigates" },
+    { "id": "REL-008", "from": "CTRL-SUPPLIER-GATE", "to": "RSK-SUPPLIER-CHANGE", "type": "mitigates" },
+    { "id": "REL-009", "from": "EVD-VV-TRACE", "to": "RSK-TRACE-GAP", "type": "indicates_risk" },
+    { "id": "REL-010", "from": "EVD-CAPA-LOG", "to": "RSK-RECURRING-CAPA", "type": "indicates_risk" }
+  ],
+  "findings": [
+    {
+      "id": "FND-2026-Q2-01",
+      "findingType": "internal_audit",
+      "sourceFunction": "QA",
+      "sourceEvent": "2026 Q2 内审",
+      "findingDate": "2026-06-18",
+      "status": "open",
+      "description": "验证报告结论引用了风险控制完成，但部分测试记录编号未在追溯矩阵中出现。",
+      "relatedRisks": ["RSK-TRACE-GAP"],
+      "relatedControls": ["CTRL-TRACE-MATRIX"],
+      "affectedFunctions": ["R&D", "QA", "RA"],
+      "recurrenceSignal": "recurring",
+      "evidenceRefs": ["EVD-VV-TRACE"],
+      "owner": "R&D Reviewer",
+      "dueDate": "2026-07-20"
+    },
+    {
+      "id": "FND-2026-Q2-02",
+      "findingType": "capa",
+      "sourceFunction": "QA",
+      "sourceEvent": "CAPA 台账抽查",
+      "findingDate": "2026-06-21",
+      "status": "triage",
+      "description": "CAPA 关闭记录存在措施完成截图，但缺少有效性确认和复发趋势判断。",
+      "relatedRisks": ["RSK-RECURRING-CAPA"],
+      "relatedControls": ["CTRL-CAPA-REVIEW"],
+      "affectedFunctions": ["QA", "Manufacturing"],
+      "recurrenceSignal": "systemic",
+      "evidenceRefs": ["EVD-CAPA-LOG"],
+      "owner": "CAPA Owner",
+      "dueDate": "2026-07-24"
+    }
+  ],
+  "auditItems": [
+    {
+      "id": "AUD-READY-001",
+      "auditCycle": "2026-Q3 Readiness",
+      "auditScope": "研发验证报告与注册资料一致性",
+      "priority": "critical",
+      "status": "candidate",
+      "rationale": "高风险条款 CLA-7-3-9 与注册资料完整性要求共同指向追溯链路；FND-2026-Q2-01 显示该链路已有重复断点。",
+      "targetFunctions": ["R&D", "QA", "RA"],
+      "sourceFindings": ["FND-2026-Q2-01"],
+      "sourceRisks": ["RSK-TRACE-GAP"],
+      "sourceControls": ["CTRL-TRACE-MATRIX"],
+      "sourceClauses": ["CLA-7-3-9", "CLA-REG-TECH-FILE"],
+      "suggestedChecks": ["抽查高风险需求的测试记录编号是否回填追溯矩阵", "确认偏差处理是否支持最终结论", "检查注册资料 claims 是否与验证结论一致"],
+      "evidenceNeeded": ["追溯矩阵最新版", "测试原始记录", "偏差关闭记录", "注册资料 claims 列表"],
+      "owner": "QA Lead",
+      "dueDate": "2026-07-26"
+    },
+    {
+      "id": "AUD-READY-002",
+      "auditCycle": "2026-Q3 Readiness",
+      "auditScope": "CAPA 关闭与有效性确认",
+      "priority": "high",
+      "status": "candidate",
+      "rationale": "FND-2026-Q2-02 呈 systemic 信号，说明 CAPA 关闭证据可能不足，需要在正式评审前检查有效性闭环。",
+      "targetFunctions": ["QA", "Manufacturing"],
+      "sourceFindings": ["FND-2026-Q2-02"],
+      "sourceRisks": ["RSK-RECURRING-CAPA"],
+      "sourceControls": ["CTRL-CAPA-REVIEW"],
+      "sourceClauses": [],
+      "suggestedChecks": ["抽查 CAPA 是否定义根因与有效性标准", "确认关闭前是否有趋势复核", "检查复发监控责任人与周期"],
+      "evidenceNeeded": ["CAPA 台账", "有效性验证记录", "趋势分析截图", "管理评审输入"],
+      "owner": "QA Manager",
+      "dueDate": "2026-07-30"
+    }
+  ],
+  "wikiPages": [
+    {
+      "id": "WIKI-TRACEABILITY",
+      "title": "需求-风险-验证追溯",
+      "entityRefs": ["CLA-7-3-9", "CLA-REG-TECH-FILE", "OBL-TRACEABILITY", "RSK-TRACE-GAP", "CTRL-TRACE-MATRIX", "EVD-VV-TRACE"],
+      "summary": "追溯链路是注册前自查的最高优先级主题。当前样例显示验证报告结论存在证据引用缺口，需要 R&D、QA、RA 共同复核。",
+      "sourceRefs": ["SRC-ISO-13485-7-3", "SRC-NMPA-REG-DOSSIER", "SRC-PROJ-VV-001"]
+    },
+    {
+      "id": "WIKI-CAPA",
+      "title": "CAPA 有效性闭环",
+      "entityRefs": ["OBL-CAPA-EFFECTIVENESS", "RSK-RECURRING-CAPA", "CTRL-CAPA-REVIEW", "EVD-CAPA-LOG"],
+      "summary": "CAPA 不应只证明措施完成，还需要证明措施有效并监控复发。当前 systemic 信号适合转为近期自查候选。",
+      "sourceRefs": ["SRC-QMS-CAPA", "SRC-FINDING-AUD-2026-04"]
+    }
+  ]
+}
