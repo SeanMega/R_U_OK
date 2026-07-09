@@ -1,9 +1,11 @@
 import { createHash } from "node:crypto";
 import { existsSync, mkdirSync, readFileSync, readdirSync, statSync, writeFileSync } from "node:fs";
-import { basename, join } from "node:path";
+import { basename, join, relative, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 
-const DEFAULT_SOURCE_ROOT = "/Users/sean/Documents/base knowledge";
-const sourceRoot = process.argv[2] || process.env.R_U_OK_STANDARD_MD_ROOT || DEFAULT_SOURCE_ROOT;
+const PROJECT_ROOT = fileURLToPath(new URL("..", import.meta.url));
+const DEFAULT_SOURCE_ROOT = join(PROJECT_ROOT, "base-knowledge");
+const sourceRoot = resolve(process.argv[2] || process.env.R_U_OK_STANDARD_MD_ROOT || DEFAULT_SOURCE_ROOT);
 const outputPath = new URL("../src/data/standard-index.json", import.meta.url);
 const manifestPath = new URL("../src/data/base-knowledge-manifest.json", import.meta.url);
 
@@ -11,14 +13,14 @@ if (!existsSync(sourceRoot)) {
   throw new Error(`Markdown knowledge base folder not found: ${sourceRoot}`);
 }
 
-const files = walk(sourceRoot).filter((file) => file.toLowerCase().endsWith(".md")).sort();
+const files = walk(sourceRoot).filter(isKnowledgeMarkdown).sort();
 const documents = files.map((file) => compileDocument(file));
 const domains = summarizeDomains(documents);
 const requirementSignals = summarizeSignals(documents);
 
 const index = {
   generatedAt: new Date().toISOString(),
-  sourceRoot,
+  sourceRoot: toProjectPath(sourceRoot),
   strategy: "llm-wiki-ready-standard-index",
   copyrightBoundary:
     "This index stores metadata, heading signals, tags, and derived review prompts only. It intentionally avoids copying standard body text.",
@@ -29,7 +31,7 @@ const index = {
 };
 const manifest = {
   generatedAt: index.generatedAt,
-  sourceRoot,
+  sourceRoot: index.sourceRoot,
   strategy: "base-knowledge-hash-manifest",
   totalDocuments: documents.length,
   documents: documents.map((doc) => ({
@@ -56,6 +58,10 @@ function walk(dir) {
   });
 }
 
+function isKnowledgeMarkdown(file) {
+  return file.toLowerCase().endsWith(".md") && basename(file).toLowerCase() !== "readme.md";
+}
+
 function compileDocument(file) {
   const text = readFileSync(file, "utf8");
   const fileName = basename(file);
@@ -71,7 +77,7 @@ function compileDocument(file) {
   return {
     id,
     fileName,
-    sourcePath: file,
+    sourcePath: toProjectPath(file),
     hash,
     title: normalizeWhitespace(title),
     language: detectLanguage(text),
@@ -85,6 +91,11 @@ function compileDocument(file) {
     readinessScore: scoreDocument({ headings, domains, requirementSignals, candidateEntities }),
     wikiSeed: buildWikiSeed(id, domains)
   };
+}
+
+function toProjectPath(path) {
+  const relPath = relative(PROJECT_ROOT, path);
+  return relPath.startsWith("..") ? path : relPath || ".";
 }
 
 function extractHeadings(text) {

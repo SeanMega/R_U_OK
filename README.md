@@ -35,7 +35,7 @@ npm run build
 `npm run kb:compile` 默认读取：
 
 ```text
-/Users/sean/Documents/base knowledge
+base-knowledge/
 ```
 
 也可以指定路径：
@@ -44,7 +44,7 @@ npm run build
 npm run kb:compile -- /path/to/markdown-standards
 ```
 
-编译策略只保存元数据、章节信号、领域标签、要求信号、候选实体和 review prompts，不复制大段标准正文。
+`base-knowledge/` 是随项目固定的只读基础知识库。编译策略只保存元数据、章节信号、领域标签、要求信号、候选实体和 review prompts 到应用索引；项目证据、findings 和 derived gaps 不写回这个目录。
 
 `npm run kb:verify` 会按 [base-knowledge-manifest.json](src/data/base-knowledge-manifest.json) 重新计算源文件 hash。若 base 知识库文件被误删、误加或误改，命令会失败，提示需要管理员确认后重新编译。
 

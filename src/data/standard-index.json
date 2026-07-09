@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-07-09T15:15:40.949Z",
-  "sourceRoot": "/Users/sean/Documents/base knowledge",
+  "generatedAt": "2026-07-09T15:20:11.700Z",
+  "sourceRoot": "base-knowledge",
   "strategy": "llm-wiki-ready-standard-index",
   "copyrightBoundary": "This index stores metadata, heading signals, tags, and derived review prompts only. It intentionally avoids copying standard body text.",
   "totalDocuments": 12,
@@ -76,7 +76,7 @@
     {
       "id": "GB4793.1-2007",
       "fileName": "GB4793.1-2007.md",
-      "sourcePath": "/Users/sean/Documents/base knowledge/GB4793.1-2007.md",
+      "sourcePath": "base-knowledge/GB4793.1-2007.md",
       "hash": "abeebd529937",
       "title": "测量、控制和实验室用电气设备的安全要求第1部分：通用要求",
       "language": "zh",
@@ -181,7 +181,7 @@
     {
       "id": "GB9706.1-2020",
       "fileName": "GB9706.1-2020.md",
-      "sourcePath": "/Users/sean/Documents/base knowledge/GB9706.1-2020.md",
+      "sourcePath": "base-knowledge/GB9706.1-2020.md",
       "hash": "7bbab641c07f",
       "title": "医用电气设备 第1部分:基本安全和基本性能的通用要求",
       "language": "zh",
@@ -303,7 +303,7 @@
     {
       "id": "GBT42061-2022",
       "fileName": "GBT42061-2022.md",
-      "sourcePath": "/Users/sean/Documents/base knowledge/GBT42061-2022.md",
+      "sourcePath": "base-knowledge/GBT42061-2022.md",
       "hash": "1d56a20a610b",
       "title": "医疗器械 质量管理体系用于法规的要求",
       "language": "zh",
@@ -447,7 +447,7 @@
     {
       "id": "GBT42062-2022",
       "fileName": "GBT42062-2022.md",
-      "sourcePath": "/Users/sean/Documents/base knowledge/GBT42062-2022.md",
+      "sourcePath": "base-knowledge/GBT42062-2022.md",
       "hash": "3636892e42c9",
       "title": "医疗器械 风险管理对医疗器械的应用",
       "language": "zh",
@@ -567,7 +567,7 @@
     {
       "id": "ISO13485-2016(E)",
       "fileName": "ISO13485-2016(E).md",
-      "sourcePath": "/Users/sean/Documents/base knowledge/ISO13485-2016(E).md",
+      "sourcePath": "base-knowledge/ISO13485-2016(E).md",
       "hash": "49c686870bb2",
       "title": "Medical devices — Quality management systems — Requirements for regulatory purposes",
       "language": "en",
@@ -705,7 +705,7 @@
     {
       "id": "ISO14971-2019(E)",
       "fileName": "ISO14971-2019(E).md",
-      "sourcePath": "/Users/sean/Documents/base knowledge/ISO14971-2019(E).md",
+      "sourcePath": "base-knowledge/ISO14971-2019(E).md",
       "hash": "c127be8ac0ef",
       "title": "Medical devices — Application of risk management to medical devices",
       "language": "en",
@@ -827,7 +827,7 @@
     {
       "id": "ISOTR24971-2020(E)",
       "fileName": "ISOTR24971-2020(E).md",
-      "sourcePath": "/Users/sean/Documents/base knowledge/ISOTR24971-2020(E).md",
+      "sourcePath": "base-knowledge/ISOTR24971-2020(E).md",
       "hash": "acd7caa0bcbc",
       "title": "Medical devices — Guidance on the application of ISO 14971",
       "language": "en",
@@ -947,7 +947,7 @@
     {
       "id": "YYT1437-2023",
       "fileName": "YYT1437-2023.md",
-      "sourcePath": "/Users/sean/Documents/base knowledge/YYT1437-2023.md",
+      "sourcePath": "base-knowledge/YYT1437-2023.md",
       "hash": "30f52bc10d54",
       "title": "医疗器械 GB/T 42062 应用指南",
       "language": "zh",
@@ -1067,7 +1067,7 @@
     {
       "id": "cmde-2022-7",
       "fileName": "cmde-2022-7.md",
-      "sourcePath": "/Users/sean/Documents/base knowledge/cmde-2022-7.md",
+      "sourcePath": "base-knowledge/cmde-2022-7.md",
       "hash": "66a48842c202",
       "title": "医疗器械网络安全注册审查指导原则（2022年修订版）",
       "language": "zh",
@@ -1169,7 +1169,7 @@
     {
       "id": "gmp-2025.zh",
       "fileName": "gmp-2025.zh.md",
-      "sourcePath": "/Users/sean/Documents/base knowledge/gmp-2025.zh.md",
+      "sourcePath": "base-knowledge/gmp-2025.zh.md",
       "hash": "688ea6a4558c",
       "title": "医疗器械生产质量管理规范(2025年版)",
       "language": "zh",
@@ -1278,7 +1278,7 @@
     {
       "id": "nmpa-order-15.zh",
       "fileName": "nmpa-order-15.zh.md",
-      "sourcePath": "/Users/sean/Documents/base knowledge/nmpa-order-15.zh.md",
+      "sourcePath": "base-knowledge/nmpa-order-15.zh.md",
       "hash": "68f7a667d0f7",
       "title": "医疗器械分类规则",
       "language": "zh",
@@ -1304,7 +1304,7 @@
     {
       "id": "nmpa-order-6.zh",
       "fileName": "nmpa-order-6.zh.md",
-      "sourcePath": "/Users/sean/Documents/base knowledge/nmpa-order-6.zh.md",
+      "sourcePath": "base-knowledge/nmpa-order-6.zh.md",
       "hash": "202340fc1fef",
       "title": "医疗器械说明书和标签管理规定",
       "language": "zh",

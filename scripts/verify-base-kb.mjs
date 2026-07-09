@@ -1,22 +1,27 @@
 import { createHash } from "node:crypto";
 import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
-import { basename, join } from "node:path";
+import { basename, isAbsolute, join, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 
 const manifestPath = new URL("../src/data/base-knowledge-manifest.json", import.meta.url);
+const PROJECT_ROOT = fileURLToPath(new URL("..", import.meta.url));
 
 if (!existsSync(manifestPath)) {
   throw new Error("Base knowledge manifest not found. Run npm run kb:compile first.");
 }
 
 const manifest = JSON.parse(readFileSync(manifestPath, "utf8"));
-const sourceRoot = process.argv[2] || process.env.R_U_OK_STANDARD_MD_ROOT || manifest.sourceRoot;
+const configuredSourceRoot = process.argv[2] || process.env.R_U_OK_STANDARD_MD_ROOT || manifest.sourceRoot;
+const sourceRoot = isAbsolute(configuredSourceRoot)
+  ? configuredSourceRoot
+  : resolve(PROJECT_ROOT, configuredSourceRoot);
 
 if (!existsSync(sourceRoot)) {
   throw new Error(`Base knowledge folder not found: ${sourceRoot}`);
 }
 
 const expected = new Map(manifest.documents.map((doc) => [doc.fileName, doc]));
-const actualFiles = walk(sourceRoot).filter((file) => file.toLowerCase().endsWith(".md")).sort();
+const actualFiles = walk(sourceRoot).filter(isKnowledgeMarkdown).sort();
 const actual = new Map(actualFiles.map((file) => [basename(file), file]));
 const errors = [];
 
@@ -50,6 +55,10 @@ function walk(dir) {
     const stats = statSync(path);
     return stats.isDirectory() ? walk(path) : [path];
   });
+}
+
+function isKnowledgeMarkdown(file) {
+  return file.toLowerCase().endsWith(".md") && basename(file).toLowerCase() !== "readme.md";
 }
 
 function hashFile(file) {
