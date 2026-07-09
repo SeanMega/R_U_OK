@@ -53,7 +53,7 @@
 - Kanban 必须包含四列：
   - Finding input
   - Plan candidate
-  - Risk focus
+  - Evidence gaps
   - Evidence control
 - 自查计划候选必须包含 rationale。
 - 自查计划候选必须包含 suggested checks 和 evidence needed。

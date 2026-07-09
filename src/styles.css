@@ -365,13 +365,13 @@ h4 {
   height: 100%;
 }
 
-.risk-list {
+.focus-gap-list {
   display: grid;
   gap: 14px;
   margin-top: 18px;
 }
 
-.risk-row {
+.focus-gap-row {
   align-items: flex-start;
   border-bottom: 1px solid #edf1f3;
   display: grid;
@@ -380,12 +380,12 @@ h4 {
   padding-bottom: 14px;
 }
 
-.risk-row:last-child {
+.focus-gap-row:last-child {
   border-bottom: 0;
   padding-bottom: 0;
 }
 
-.risk-row p,
+.focus-gap-row p,
 .wiki-item p,
 .kanban-card p,
 .detail-panel p,
@@ -934,7 +934,7 @@ h4 {
   margin-bottom: 6px;
 }
 
-.graph-node.risk {
+.graph-node.gap {
   border-color: #cc4b37;
 }
 

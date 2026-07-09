@@ -90,7 +90,7 @@ npm run build
 当前 Chat 是规则化本地回答：
 
 - 根据问题选择 audit item。
-- 回溯 risks、clauses、controls。
+- 回溯 gaps、clauses、controls。
 - 匹配 standard requirement signals。
 - 输出 sources 和人工复核提示。
 
