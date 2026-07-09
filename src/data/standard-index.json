@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-09T02:47:50.435Z",
+  "generatedAt": "2026-07-09T14:08:27.903Z",
   "sourceRoot": "/Users/sean/Downloads/Knowladge base/standard/markdown",
   "strategy": "llm-wiki-ready-standard-index",
   "copyrightBoundary": "This index stores metadata, heading signals, tags, and derived review prompts only. It intentionally avoids copying standard body text.",
@@ -294,8 +294,8 @@
           "title": "设计开发与追溯义务"
         },
         {
-          "type": "risk",
-          "title": "灭菌过程确认不足"
+          "type": "process_requirement",
+          "title": "灭菌过程确认要求"
         },
         {
           "type": "control",
@@ -305,7 +305,7 @@
       "reviewPrompts": [
         "确认该标准与质量手册、程序文件、记录控制和管理评审的覆盖关系。",
         "核对灭菌过程开发、确认、常规监视和放行记录是否支持无菌状态声明。",
-        "确认采购信息、供应商资质、质量协议和来料检验策略是否与风险等级匹配。",
+        "确认采购信息、供应商资质、质量协议和来料检验策略是否与物料重要度匹配。",
         "将控制措施映射到 evidence_needed，避免只有要求没有证据。"
       ],
       "readinessScore": 100,
@@ -424,8 +424,8 @@
           "title": "设计开发与追溯义务"
         },
         {
-          "type": "risk",
-          "title": "灭菌过程确认不足"
+          "type": "process_requirement",
+          "title": "灭菌过程确认要求"
         },
         {
           "type": "control",
@@ -435,7 +435,7 @@
       "reviewPrompts": [
         "确认该标准与质量手册、程序文件、记录控制和管理评审的覆盖关系。",
         "核对灭菌过程开发、确认、常规监视和放行记录是否支持无菌状态声明。",
-        "确认采购信息、供应商资质、质量协议和来料检验策略是否与风险等级匹配。",
+        "确认采购信息、供应商资质、质量协议和来料检验策略是否与物料重要度匹配。",
         "将控制措施映射到 evidence_needed，避免只有要求没有证据。"
       ],
       "readinessScore": 100,
@@ -543,8 +543,8 @@
       ],
       "candidateEntities": [
         {
-          "type": "risk",
-          "title": "灭菌过程确认不足"
+          "type": "process_requirement",
+          "title": "灭菌过程确认要求"
         }
       ],
       "reviewPrompts": [
@@ -656,7 +656,7 @@
         }
       ],
       "reviewPrompts": [
-        "确认采购信息、供应商资质、质量协议和来料检验策略是否与风险等级匹配。",
+        "确认采购信息、供应商资质、质量协议和来料检验策略是否与物料重要度匹配。",
         "将控制措施映射到 evidence_needed，避免只有要求没有证据。"
       ],
       "readinessScore": 70,
@@ -757,8 +757,8 @@
       "requirementSignals": [],
       "candidateEntities": [
         {
-          "type": "risk",
-          "title": "电气安全与基本性能风险"
+          "type": "safety_performance_topic",
+          "title": "电气安全与基本性能主题"
         }
       ],
       "reviewPrompts": [
@@ -867,12 +867,12 @@
       ],
       "candidateEntities": [
         {
-          "type": "risk",
-          "title": "灭菌过程确认不足"
+          "type": "process_requirement",
+          "title": "灭菌过程确认要求"
         },
         {
-          "type": "risk",
-          "title": "电气安全与基本性能风险"
+          "type": "safety_performance_topic",
+          "title": "电气安全与基本性能主题"
         }
       ],
       "reviewPrompts": [
@@ -988,12 +988,12 @@
           "title": "风险管理过程要求"
         },
         {
-          "type": "risk",
-          "title": "灭菌过程确认不足"
+          "type": "process_requirement",
+          "title": "灭菌过程确认要求"
         },
         {
-          "type": "risk",
-          "title": "电气安全与基本性能风险"
+          "type": "safety_performance_topic",
+          "title": "电气安全与基本性能主题"
         }
       ],
       "reviewPrompts": [
@@ -1105,12 +1105,12 @@
       ],
       "candidateEntities": [
         {
-          "type": "risk",
-          "title": "灭菌过程确认不足"
+          "type": "process_requirement",
+          "title": "灭菌过程确认要求"
         },
         {
-          "type": "risk",
-          "title": "电气安全与基本性能风险"
+          "type": "safety_performance_topic",
+          "title": "电气安全与基本性能主题"
         }
       ],
       "reviewPrompts": [
@@ -1231,13 +1231,13 @@
           "title": "生产和上市后信息收集义务"
         },
         {
-          "type": "risk",
-          "title": "生物相容性评价缺口"
+          "type": "evaluation_topic",
+          "title": "生物学评价主题"
         }
       ],
       "reviewPrompts": [
         "检查风险管理计划、风险分析、风险控制、剩余风险评价和风险管理报告是否形成闭环。",
-        "核对生物学评价项目选择、样品代表性、测试报告和毒理学风险评价是否可追溯。",
+        "核对生物学评价项目选择、样品代表性、测试报告和毒理学评价依据是否可追溯。",
         "确认生产和上市后信息是否进入风险管理和 CAPA 触发机制。"
       ],
       "readinessScore": 100,
@@ -1343,12 +1343,12 @@
       ],
       "candidateEntities": [
         {
-          "type": "risk",
-          "title": "生物相容性评价缺口"
+          "type": "evaluation_topic",
+          "title": "生物学评价主题"
         }
       ],
       "reviewPrompts": [
-        "核对生物学评价项目选择、样品代表性、测试报告和毒理学风险评价是否可追溯。"
+        "核对生物学评价项目选择、样品代表性、测试报告和毒理学评价依据是否可追溯。"
       ],
       "readinessScore": 88,
       "wikiSeed": {
@@ -1452,12 +1452,12 @@
       ],
       "candidateEntities": [
         {
-          "type": "risk",
-          "title": "生物相容性评价缺口"
+          "type": "evaluation_topic",
+          "title": "生物学评价主题"
         }
       ],
       "reviewPrompts": [
-        "核对生物学评价项目选择、样品代表性、测试报告和毒理学风险评价是否可追溯。"
+        "核对生物学评价项目选择、样品代表性、测试报告和毒理学评价依据是否可追溯。"
       ],
       "readinessScore": 88,
       "wikiSeed": {
@@ -1570,12 +1570,12 @@
           "title": "风险管理过程要求"
         },
         {
-          "type": "risk",
-          "title": "生物相容性评价缺口"
+          "type": "evaluation_topic",
+          "title": "生物学评价主题"
         },
         {
-          "type": "risk",
-          "title": "灭菌过程确认不足"
+          "type": "process_requirement",
+          "title": "灭菌过程确认要求"
         },
         {
           "type": "control",
@@ -1584,9 +1584,9 @@
       ],
       "reviewPrompts": [
         "检查风险管理计划、风险分析、风险控制、剩余风险评价和风险管理报告是否形成闭环。",
-        "核对生物学评价项目选择、样品代表性、测试报告和毒理学风险评价是否可追溯。",
+        "核对生物学评价项目选择、样品代表性、测试报告和毒理学评价依据是否可追溯。",
         "核对灭菌过程开发、确认、常规监视和放行记录是否支持无菌状态声明。",
-        "确认采购信息、供应商资质、质量协议和来料检验策略是否与风险等级匹配。",
+        "确认采购信息、供应商资质、质量协议和来料检验策略是否与物料重要度匹配。",
         "将控制措施映射到 evidence_needed，避免只有要求没有证据。"
       ],
       "readinessScore": 100,
@@ -1693,12 +1693,12 @@
       ],
       "candidateEntities": [
         {
-          "type": "risk",
-          "title": "生物相容性评价缺口"
+          "type": "evaluation_topic",
+          "title": "生物学评价主题"
         }
       ],
       "reviewPrompts": [
-        "核对生物学评价项目选择、样品代表性、测试报告和毒理学风险评价是否可追溯。"
+        "核对生物学评价项目选择、样品代表性、测试报告和毒理学评价依据是否可追溯。"
       ],
       "readinessScore": 88,
       "wikiSeed": {
@@ -1802,12 +1802,12 @@
       ],
       "candidateEntities": [
         {
-          "type": "risk",
-          "title": "生物相容性评价缺口"
+          "type": "evaluation_topic",
+          "title": "生物学评价主题"
         }
       ],
       "reviewPrompts": [
-        "核对生物学评价项目选择、样品代表性、测试报告和毒理学风险评价是否可追溯。"
+        "核对生物学评价项目选择、样品代表性、测试报告和毒理学评价依据是否可追溯。"
       ],
       "readinessScore": 88,
       "wikiSeed": {
@@ -1910,12 +1910,12 @@
       ],
       "candidateEntities": [
         {
-          "type": "risk",
-          "title": "生物相容性评价缺口"
+          "type": "evaluation_topic",
+          "title": "生物学评价主题"
         }
       ],
       "reviewPrompts": [
-        "核对生物学评价项目选择、样品代表性、测试报告和毒理学风险评价是否可追溯。"
+        "核对生物学评价项目选择、样品代表性、测试报告和毒理学评价依据是否可追溯。"
       ],
       "readinessScore": 71,
       "wikiSeed": {
@@ -2024,13 +2024,13 @@
           "title": "质量管理体系要求"
         },
         {
-          "type": "risk",
-          "title": "生物相容性评价缺口"
+          "type": "evaluation_topic",
+          "title": "生物学评价主题"
         }
       ],
       "reviewPrompts": [
         "确认该标准与质量手册、程序文件、记录控制和管理评审的覆盖关系。",
-        "核对生物学评价项目选择、样品代表性、测试报告和毒理学风险评价是否可追溯。"
+        "核对生物学评价项目选择、样品代表性、测试报告和毒理学评价依据是否可追溯。"
       ],
       "readinessScore": 91,
       "wikiSeed": {
@@ -2136,12 +2136,12 @@
       ],
       "candidateEntities": [
         {
-          "type": "risk",
-          "title": "生物相容性评价缺口"
+          "type": "evaluation_topic",
+          "title": "生物学评价主题"
         }
       ],
       "reviewPrompts": [
-        "核对生物学评价项目选择、样品代表性、测试报告和毒理学风险评价是否可追溯。"
+        "核对生物学评价项目选择、样品代表性、测试报告和毒理学评价依据是否可追溯。"
       ],
       "readinessScore": 90,
       "wikiSeed": {
@@ -2252,8 +2252,8 @@
           "title": "风险管理过程要求"
         },
         {
-          "type": "risk",
-          "title": "生物相容性评价缺口"
+          "type": "evaluation_topic",
+          "title": "生物学评价主题"
         },
         {
           "type": "control",
@@ -2262,8 +2262,8 @@
       ],
       "reviewPrompts": [
         "检查风险管理计划、风险分析、风险控制、剩余风险评价和风险管理报告是否形成闭环。",
-        "核对生物学评价项目选择、样品代表性、测试报告和毒理学风险评价是否可追溯。",
-        "确认采购信息、供应商资质、质量协议和来料检验策略是否与风险等级匹配。",
+        "核对生物学评价项目选择、样品代表性、测试报告和毒理学评价依据是否可追溯。",
+        "确认采购信息、供应商资质、质量协议和来料检验策略是否与物料重要度匹配。",
         "确认生产和上市后信息是否进入风险管理和 CAPA 触发机制。",
         "将控制措施映射到 evidence_needed，避免只有要求没有证据。"
       ],
@@ -2370,12 +2370,12 @@
       ],
       "candidateEntities": [
         {
-          "type": "risk",
-          "title": "生物相容性评价缺口"
+          "type": "evaluation_topic",
+          "title": "生物学评价主题"
         }
       ],
       "reviewPrompts": [
-        "核对生物学评价项目选择、样品代表性、测试报告和毒理学风险评价是否可追溯。"
+        "核对生物学评价项目选择、样品代表性、测试报告和毒理学评价依据是否可追溯。"
       ],
       "readinessScore": 73,
       "wikiSeed": {
@@ -2482,13 +2482,13 @@
           "title": "风险管理过程要求"
         },
         {
-          "type": "risk",
-          "title": "生物相容性评价缺口"
+          "type": "evaluation_topic",
+          "title": "生物学评价主题"
         }
       ],
       "reviewPrompts": [
         "检查风险管理计划、风险分析、风险控制、剩余风险评价和风险管理报告是否形成闭环。",
-        "核对生物学评价项目选择、样品代表性、测试报告和毒理学风险评价是否可追溯。"
+        "核对生物学评价项目选择、样品代表性、测试报告和毒理学评价依据是否可追溯。"
       ],
       "readinessScore": 75,
       "wikiSeed": {
@@ -2592,12 +2592,12 @@
       ],
       "candidateEntities": [
         {
-          "type": "risk",
-          "title": "生物相容性评价缺口"
+          "type": "evaluation_topic",
+          "title": "生物学评价主题"
         }
       ],
       "reviewPrompts": [
-        "核对生物学评价项目选择、样品代表性、测试报告和毒理学风险评价是否可追溯。"
+        "核对生物学评价项目选择、样品代表性、测试报告和毒理学评价依据是否可追溯。"
       ],
       "readinessScore": 87,
       "wikiSeed": {
@@ -2703,16 +2703,16 @@
       ],
       "candidateEntities": [
         {
-          "type": "risk",
-          "title": "生物相容性评价缺口"
+          "type": "evaluation_topic",
+          "title": "生物学评价主题"
         },
         {
-          "type": "risk",
-          "title": "灭菌过程确认不足"
+          "type": "process_requirement",
+          "title": "灭菌过程确认要求"
         }
       ],
       "reviewPrompts": [
-        "核对生物学评价项目选择、样品代表性、测试报告和毒理学风险评价是否可追溯。",
+        "核对生物学评价项目选择、样品代表性、测试报告和毒理学评价依据是否可追溯。",
         "核对灭菌过程开发、确认、常规监视和放行记录是否支持无菌状态声明。"
       ],
       "readinessScore": 100,
@@ -2821,16 +2821,16 @@
       ],
       "candidateEntities": [
         {
-          "type": "risk",
-          "title": "生物相容性评价缺口"
+          "type": "evaluation_topic",
+          "title": "生物学评价主题"
         },
         {
-          "type": "risk",
-          "title": "灭菌过程确认不足"
+          "type": "process_requirement",
+          "title": "灭菌过程确认要求"
         }
       ],
       "reviewPrompts": [
-        "核对生物学评价项目选择、样品代表性、测试报告和毒理学风险评价是否可追溯。",
+        "核对生物学评价项目选择、样品代表性、测试报告和毒理学评价依据是否可追溯。",
         "核对灭菌过程开发、确认、常规监视和放行记录是否支持无菌状态声明。"
       ],
       "readinessScore": 100,
@@ -2936,12 +2936,12 @@
       ],
       "candidateEntities": [
         {
-          "type": "risk",
-          "title": "生物相容性评价缺口"
+          "type": "evaluation_topic",
+          "title": "生物学评价主题"
         }
       ],
       "reviewPrompts": [
-        "核对生物学评价项目选择、样品代表性、测试报告和毒理学风险评价是否可追溯。"
+        "核对生物学评价项目选择、样品代表性、测试报告和毒理学评价依据是否可追溯。"
       ],
       "readinessScore": 83,
       "wikiSeed": {
@@ -3050,16 +3050,16 @@
       ],
       "candidateEntities": [
         {
-          "type": "risk",
-          "title": "生物相容性评价缺口"
+          "type": "evaluation_topic",
+          "title": "生物学评价主题"
         },
         {
-          "type": "risk",
-          "title": "灭菌过程确认不足"
+          "type": "process_requirement",
+          "title": "灭菌过程确认要求"
         }
       ],
       "reviewPrompts": [
-        "核对生物学评价项目选择、样品代表性、测试报告和毒理学风险评价是否可追溯。",
+        "核对生物学评价项目选择、样品代表性、测试报告和毒理学评价依据是否可追溯。",
         "核对灭菌过程开发、确认、常规监视和放行记录是否支持无菌状态声明。"
       ],
       "readinessScore": 100,
@@ -3166,12 +3166,12 @@
       ],
       "candidateEntities": [
         {
-          "type": "risk",
-          "title": "生物相容性评价缺口"
+          "type": "evaluation_topic",
+          "title": "生物学评价主题"
         }
       ],
       "reviewPrompts": [
-        "核对生物学评价项目选择、样品代表性、测试报告和毒理学风险评价是否可追溯。"
+        "核对生物学评价项目选择、样品代表性、测试报告和毒理学评价依据是否可追溯。"
       ],
       "readinessScore": 69,
       "wikiSeed": {
@@ -3368,8 +3368,8 @@
       ],
       "candidateEntities": [
         {
-          "type": "risk",
-          "title": "电气安全与基本性能风险"
+          "type": "safety_performance_topic",
+          "title": "电气安全与基本性能主题"
         }
       ],
       "reviewPrompts": [
@@ -3478,8 +3478,8 @@
       ],
       "candidateEntities": [
         {
-          "type": "risk",
-          "title": "灭菌过程确认不足"
+          "type": "process_requirement",
+          "title": "灭菌过程确认要求"
         }
       ],
       "reviewPrompts": [
@@ -3605,7 +3605,7 @@
       ],
       "reviewPrompts": [
         "确认该标准与质量手册、程序文件、记录控制和管理评审的覆盖关系。",
-        "确认采购信息、供应商资质、质量协议和来料检验策略是否与风险等级匹配。",
+        "确认采购信息、供应商资质、质量协议和来料检验策略是否与物料重要度匹配。",
         "将控制措施映射到 evidence_needed，避免只有要求没有证据。"
       ],
       "readinessScore": 100,
@@ -3735,8 +3735,8 @@
           "title": "生产和上市后信息收集义务"
         },
         {
-          "type": "risk",
-          "title": "灭菌过程确认不足"
+          "type": "process_requirement",
+          "title": "灭菌过程确认要求"
         },
         {
           "type": "control",
@@ -3747,7 +3747,7 @@
         "确认该标准与质量手册、程序文件、记录控制和管理评审的覆盖关系。",
         "检查风险管理计划、风险分析、风险控制、剩余风险评价和风险管理报告是否形成闭环。",
         "核对灭菌过程开发、确认、常规监视和放行记录是否支持无菌状态声明。",
-        "确认采购信息、供应商资质、质量协议和来料检验策略是否与风险等级匹配。",
+        "确认采购信息、供应商资质、质量协议和来料检验策略是否与物料重要度匹配。",
         "确认生产和上市后信息是否进入风险管理和 CAPA 触发机制。"
       ],
       "readinessScore": 100,
@@ -3973,8 +3973,8 @@
       ],
       "candidateEntities": [
         {
-          "type": "risk",
-          "title": "电气安全与基本性能风险"
+          "type": "safety_performance_topic",
+          "title": "电气安全与基本性能主题"
         }
       ],
       "reviewPrompts": [
@@ -4100,8 +4100,8 @@
           "title": "设计开发与追溯义务"
         },
         {
-          "type": "risk",
-          "title": "灭菌过程确认不足"
+          "type": "process_requirement",
+          "title": "灭菌过程确认要求"
         },
         {
           "type": "control",
@@ -4112,7 +4112,7 @@
         "确认该标准与质量手册、程序文件、记录控制和管理评审的覆盖关系。",
         "检查风险管理计划、风险分析、风险控制、剩余风险评价和风险管理报告是否形成闭环。",
         "核对灭菌过程开发、确认、常规监视和放行记录是否支持无菌状态声明。",
-        "确认采购信息、供应商资质、质量协议和来料检验策略是否与风险等级匹配。",
+        "确认采购信息、供应商资质、质量协议和来料检验策略是否与物料重要度匹配。",
         "将控制措施映射到 evidence_needed，避免只有要求没有证据。"
       ],
       "readinessScore": 100,
@@ -4763,8 +4763,8 @@
           "title": "风险管理过程要求"
         },
         {
-          "type": "risk",
-          "title": "电气安全与基本性能风险"
+          "type": "safety_performance_topic",
+          "title": "电气安全与基本性能主题"
         }
       ],
       "reviewPrompts": [
@@ -4873,8 +4873,8 @@
       ],
       "candidateEntities": [
         {
-          "type": "risk",
-          "title": "电气安全与基本性能风险"
+          "type": "safety_performance_topic",
+          "title": "电气安全与基本性能主题"
         }
       ],
       "reviewPrompts": [
@@ -4981,8 +4981,8 @@
       ],
       "candidateEntities": [
         {
-          "type": "risk",
-          "title": "电气安全与基本性能风险"
+          "type": "safety_performance_topic",
+          "title": "电气安全与基本性能主题"
         }
       ],
       "reviewPrompts": [
@@ -5104,8 +5104,8 @@
           "title": "设计开发与追溯义务"
         },
         {
-          "type": "risk",
-          "title": "灭菌过程确认不足"
+          "type": "process_requirement",
+          "title": "灭菌过程确认要求"
         },
         {
           "type": "control",
@@ -5115,7 +5115,7 @@
       "reviewPrompts": [
         "确认该标准与质量手册、程序文件、记录控制和管理评审的覆盖关系。",
         "核对灭菌过程开发、确认、常规监视和放行记录是否支持无菌状态声明。",
-        "确认采购信息、供应商资质、质量协议和来料检验策略是否与风险等级匹配。",
+        "确认采购信息、供应商资质、质量协议和来料检验策略是否与物料重要度匹配。",
         "将控制措施映射到 evidence_needed，避免只有要求没有证据。"
       ],
       "readinessScore": 100,
@@ -5235,8 +5235,8 @@
           "title": "生产和上市后信息收集义务"
         },
         {
-          "type": "risk",
-          "title": "灭菌过程确认不足"
+          "type": "process_requirement",
+          "title": "灭菌过程确认要求"
         },
         {
           "type": "control",
@@ -5455,8 +5455,8 @@
       ],
       "candidateEntities": [
         {
-          "type": "risk",
-          "title": "电气安全与基本性能风险"
+          "type": "safety_performance_topic",
+          "title": "电气安全与基本性能主题"
         }
       ],
       "reviewPrompts": [
@@ -5571,8 +5571,8 @@
           "title": "生产和上市后信息收集义务"
         },
         {
-          "type": "risk",
-          "title": "灭菌过程确认不足"
+          "type": "process_requirement",
+          "title": "灭菌过程确认要求"
         }
       ],
       "reviewPrompts": [
@@ -5898,8 +5898,8 @@
       ],
       "candidateEntities": [
         {
-          "type": "risk",
-          "title": "电气安全与基本性能风险"
+          "type": "safety_performance_topic",
+          "title": "电气安全与基本性能主题"
         }
       ],
       "reviewPrompts": [
@@ -6227,8 +6227,8 @@
       ],
       "candidateEntities": [
         {
-          "type": "risk",
-          "title": "电气安全与基本性能风险"
+          "type": "safety_performance_topic",
+          "title": "电气安全与基本性能主题"
         }
       ],
       "reviewPrompts": [
@@ -6334,8 +6334,8 @@
       ],
       "candidateEntities": [
         {
-          "type": "risk",
-          "title": "电气安全与基本性能风险"
+          "type": "safety_performance_topic",
+          "title": "电气安全与基本性能主题"
         }
       ],
       "reviewPrompts": [

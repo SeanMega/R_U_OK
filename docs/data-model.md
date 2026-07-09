@@ -59,6 +59,7 @@ flowchart TD
 
 - `hash` 用于检测来源文件变更。
 - `topHeadings` 是章节信号，不是标准正文副本。
+- `candidateEntities` 只能表示中性的条款、义务、主题、控制或记录要求；基础标准索引不得直接生成项目风险或缺口结论。
 - `readinessScore` 用于排序，不是合规评分。
 - `wikiSeed` 指向建议编译路径。
 
@@ -110,7 +111,7 @@ flowchart TD
 
 - `coverage` 表示证据链覆盖状态，不是合规结论。
 - `confidence` 表示当前 evidence record 的资料完整度信号。
-- `linkedEntities` 用于连接要求、风险、控制和证据。
+- `linkedEntities` 用于连接要求、控制、证据和项目缺口。
 
 ## 6. Entity
 
@@ -127,9 +128,14 @@ flowchart TD
 
 - `clause`
 - `obligation`
-- `risk`
+- `gap`
 - `control`
 - `evidence`
+
+边界：
+
+- `clause`、`obligation`、`control`、`evidence` 可来自基础库或项目工作区。
+- `gap` 只能来自项目证据、finding 或人工标注，不应由法规/标准基础库直接推出。
 
 ## 7. Relation
 
@@ -143,12 +149,11 @@ flowchart TD
 关系类型：
 
 - `creates_obligation`
-- `identifies_risk`
+- `identifies_evidence_need`
 - `satisfied_by`
-- `mitigates`
-- `indicates_risk`
+- `addresses_gap`
+- `reveals_gap`
 - `drives_audit_item`
-- `addresses_risk`
 - `checks_control`
 
 ## 8. Finding
@@ -162,7 +167,7 @@ flowchart TD
 - `findingDate`
 - `status`
 - `description`
-- `relatedRisks`
+- `relatedGaps`
 - `relatedControls`
 - `affectedFunctions`
 - `recurrenceSignal`
@@ -182,7 +187,7 @@ flowchart TD
 - `rationale`
 - `targetFunctions`
 - `sourceFindings`
-- `sourceRisks`
+- `sourceGaps`
 - `sourceControls`
 - `sourceClauses`
 - `suggestedChecks`

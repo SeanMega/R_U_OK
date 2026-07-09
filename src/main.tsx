@@ -23,7 +23,7 @@ import data from "./data/knowledge-base.json";
 import standardIndexData from "./data/standard-index.json";
 import "./styles.css";
 
-type EntityType = "clause" | "obligation" | "risk" | "control" | "evidence";
+type EntityType = "clause" | "obligation" | "gap" | "control" | "evidence";
 type Severity = "critical" | "high" | "medium" | "low";
 
 type Source = {
@@ -57,7 +57,7 @@ type Finding = {
   findingDate: string;
   status: string;
   description: string;
-  relatedRisks: string[];
+  relatedGaps: string[];
   relatedControls: string[];
   affectedFunctions: string[];
   recurrenceSignal: string;
@@ -75,7 +75,7 @@ type AuditItem = {
   rationale: string;
   targetFunctions: string[];
   sourceFindings: string[];
-  sourceRisks: string[];
+  sourceGaps: string[];
   sourceControls: string[];
   sourceClauses: string[];
   suggestedChecks: string[];
@@ -174,7 +174,7 @@ type NavId = (typeof navItems)[number]["id"];
 const typeLabel: Record<EntityType, string> = {
   clause: "Clause",
   obligation: "Obligation",
-  risk: "Risk",
+  gap: "Evidence Gap",
   control: "Control",
   evidence: "Evidence"
 };
@@ -223,7 +223,7 @@ const readinessScenarios = [
 
 function App() {
   const [active, setActive] = useState<NavId>("dashboard");
-  const [selectedEntityId, setSelectedEntityId] = useState("RSK-TRACE-GAP");
+  const [selectedEntityId, setSelectedEntityId] = useState("GAP-TRACE-GAP");
   const [selectedStandardId, setSelectedStandardId] = useState("ISO13485-2016(E)");
   const entityMap = useMemo(() => new Map(kb.entities.map((entity) => [entity.id, entity])), []);
   const sourceMap = useMemo(() => new Map(kb.sources.map((source) => [source.id, source])), []);
@@ -312,14 +312,14 @@ function Dashboard({
   setActive: (active: NavId) => void;
 }) {
   const counts = countBy(kb.entities, "type");
-  const criticalRisks = kb.entities.filter((entity) => entity.type === "risk" && entity.severity === "critical");
+  const criticalGaps = kb.entities.filter((entity) => entity.type === "gap" && entity.severity === "critical");
 
   return (
     <div className="page-grid">
       <section className="hero-strip">
         <div>
           <p className="eyebrow">MVP demo path</p>
-          <h2>要求、证据、风险、计划，一条链路讲清楚。</h2>
+          <h2>要求、证据、缺口、计划，一条链路讲清楚。</h2>
           <p>
             R_U_OK 将只读基础要求和项目样例资料编译成 LLM wiki，再通过图谱和看板给出自查计划候选。
           </p>
@@ -339,7 +339,7 @@ function Dashboard({
       <section className="metric-grid">
         <Metric icon={BookOpen} label="Wiki pages" value={kb.wikiPages.length} tone="ink" />
         <Metric icon={GitFork} label="Typed relations" value={kb.relations.length} tone="teal" />
-        <Metric icon={AlertTriangle} label="Risk signals" value={kb.findings.length} tone="red" />
+        <Metric icon={AlertTriangle} label="Gap signals" value={kb.findings.length} tone="red" />
         <Metric icon={Archive} label="Standard docs" value={standardIndex.totalDocuments} tone="gold" />
       </section>
 
@@ -362,17 +362,17 @@ function Dashboard({
 
         <div className="panel">
           <div className="panel-heading">
-            <h3>近期风险焦点</h3>
+            <h3>近期证据缺口</h3>
             <span>for human review</span>
           </div>
-          <div className="risk-list">
-            {[...criticalRisks, ...kb.entities.filter((entity) => entity.type === "risk" && entity.severity === "high")].map((risk) => (
-              <article className="risk-row" key={risk.id}>
-                <SeverityBadge severity={risk.severity} />
+          <div className="focus-gap-list">
+            {[...criticalGaps, ...kb.entities.filter((entity) => entity.type === "gap" && entity.severity === "high")].map((gap) => (
+              <article className="focus-gap-row" key={gap.id}>
+                <SeverityBadge severity={gap.severity} />
                 <div>
-                  <strong>{risk.title}</strong>
-                  <p>{risk.summary}</p>
-                  <small>{risk.sourceRefs.map((ref) => sourceMap.get(ref)?.title ?? ref).join(" · ")}</small>
+                  <strong>{gap.title}</strong>
+                  <p>{gap.summary}</p>
+                  <small>{gap.sourceRefs.map((ref) => sourceMap.get(ref)?.title ?? ref).join(" · ")}</small>
                 </div>
               </article>
             ))}
@@ -867,15 +867,15 @@ function Kanban({ entityMap }: { entityMap: Map<string, Entity> }) {
         ))}
       </KanbanColumn>
 
-      <KanbanColumn title="Risk focus" icon={AlertTriangle}>
-        {kb.entities.filter((entity) => entity.type === "risk").map((risk) => (
-          <article className="kanban-card" key={risk.id}>
+      <KanbanColumn title="Evidence gaps" icon={AlertTriangle}>
+        {kb.entities.filter((entity) => entity.type === "gap").map((gap) => (
+          <article className="kanban-card" key={gap.id}>
             <div className="card-title-row">
-              <strong>{risk.title}</strong>
-              <SeverityBadge severity={risk.severity} />
+              <strong>{gap.title}</strong>
+              <SeverityBadge severity={gap.severity} />
             </div>
-            <p>{risk.summary}</p>
-            <small>{risk.id}</small>
+            <p>{gap.summary}</p>
+            <small>{gap.id}</small>
           </article>
         ))}
       </KanbanColumn>
@@ -897,7 +897,7 @@ function Kanban({ entityMap }: { entityMap: Map<string, Entity> }) {
 }
 
 function Chat({ entityMap, sourceMap }: { entityMap: Map<string, Entity>; sourceMap: Map<string, Source> }) {
-  const [question, setQuestion] = useState("根据当前风险图谱，近期自查应该优先关注哪些主题？");
+  const [question, setQuestion] = useState("根据当前知识库和项目证据，近期自查应该优先关注哪些证据缺口或主题？");
   const answer = buildAnswer(question, entityMap, sourceMap);
 
   return (
@@ -958,7 +958,7 @@ function Chat({ entityMap, sourceMap }: { entityMap: Map<string, Entity>; source
         </div>
         <ol className="query-path">
           <li>识别问题意图：近期自查优先级</li>
-          <li>遍历 high/critical risks</li>
+          <li>遍历 high/critical evidence gaps</li>
           <li>回溯 findings、controls、clauses</li>
           <li>输出 evidence_needed 与人工复核提示</li>
         </ol>
@@ -975,10 +975,10 @@ function buildAnswer(question: string, entityMap: Map<string, Entity>, sourceMap
 
   return {
     themes: targetItems.map((item) => {
-      const risks = item.sourceRisks.map((id) => entityMap.get(id)).filter(Boolean) as Entity[];
+      const gaps = item.sourceGaps.map((id) => entityMap.get(id)).filter(Boolean) as Entity[];
       const clauses = item.sourceClauses.map((id) => entityMap.get(id)).filter(Boolean) as Entity[];
       const controls = item.sourceControls.map((id) => entityMap.get(id)).filter(Boolean) as Entity[];
-      const refs = [...risks, ...clauses, ...controls].flatMap((entity) => entity.sourceRefs);
+      const refs = [...gaps, ...clauses, ...controls].flatMap((entity) => entity.sourceRefs);
       const sources = [...new Set(refs)].map((ref) => {
         const source = sourceMap.get(ref);
         return source ? `${source.id}: ${source.title}` : ref;
@@ -1005,7 +1005,7 @@ function buildAnswer(question: string, entityMap: Map<string, Entity>, sourceMap
 }
 
 function findEvidenceForAuditItem(item: AuditItem) {
-  const linkedIds = new Set([...item.sourceRisks, ...item.sourceControls, ...item.sourceClauses]);
+  const linkedIds = new Set([...item.sourceGaps, ...item.sourceControls, ...item.sourceClauses]);
   return kb.evidenceRecords
     .filter((record) => record.linkedEntities.some((id) => linkedIds.has(id)))
     .sort((a, b) => a.confidence - b.confidence)
@@ -1119,7 +1119,7 @@ function buildStandardChecklist(doc: StandardDocument) {
     checklist.add("确认相关岗位培训、能力评价和授权记录与该标准要求相匹配。");
   }
   if (checklist.size === 0) {
-    checklist.add("先由 QA/RA 确认该标准适用性，再将关键章节编译为 clause、obligation、risk、control。");
+    checklist.add("先由 QA/RA 确认该标准适用性，再将关键章节编译为 clause、obligation、control、evidence_need。");
   }
   return [...checklist].slice(0, 6);
 }
@@ -1173,20 +1173,20 @@ function findEvidenceBySignals(signals: string[]) {
   if (signals.includes("design_control") || signals.includes("verification_validation")) {
     interestedEntities.add("OBL-TRACEABILITY");
     interestedEntities.add("CTRL-TRACE-MATRIX");
-    interestedEntities.add("RSK-TRACE-GAP");
+    interestedEntities.add("GAP-TRACE-GAP");
   }
   if (signals.includes("risk_file")) {
     interestedEntities.add("OBL-TRACEABILITY");
-    interestedEntities.add("RSK-TRACE-GAP");
+    interestedEntities.add("GAP-TRACE-GAP");
   }
   if (signals.includes("capa_feedback") || signals.includes("post_market")) {
     interestedEntities.add("OBL-CAPA-EFFECTIVENESS");
     interestedEntities.add("CTRL-CAPA-REVIEW");
-    interestedEntities.add("RSK-RECURRING-CAPA");
+    interestedEntities.add("GAP-RECURRING-CAPA");
   }
   if (signals.includes("supplier_control")) {
     interestedEntities.add("CTRL-SUPPLIER-GATE");
-    interestedEntities.add("RSK-SUPPLIER-CHANGE");
+    interestedEntities.add("GAP-SUPPLIER-CHANGE");
   }
   if (interestedEntities.size === 0) return [];
   return kb.evidenceRecords

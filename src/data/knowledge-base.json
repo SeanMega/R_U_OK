@@ -45,6 +45,15 @@
       "function": "RA",
       "status": "draft",
       "linkedEvidence": ["EVR-RA-001"]
+    },
+    {
+      "id": "PF-SUP-CHANGE-001",
+      "name": "关键物料供应商变更记录",
+      "path": "workspace/neuro-pump/supplier/key-material-change.md",
+      "kind": "supplier_change_record",
+      "function": "Supplier Quality",
+      "status": "needs_review",
+      "linkedEvidence": ["EVR-SUP-001"]
     }
   ],
   "evidenceRecords": [
@@ -56,7 +65,7 @@
       "coverage": "partial",
       "confidence": 66,
       "summary": "覆盖 42 项需求，但 6 项风险控制缺少测试记录编号。",
-      "linkedEntities": ["OBL-TRACEABILITY", "CTRL-TRACE-MATRIX", "RSK-TRACE-GAP"],
+      "linkedEntities": ["OBL-TRACEABILITY", "CTRL-TRACE-MATRIX", "GAP-TRACE-GAP"],
       "gaps": ["风险控制 RC-07、RC-11、RC-13 缺少测试记录引用", "偏差关闭记录未链接最终结论"],
       "suggestedActions": ["补齐风险控制到测试记录的引用", "将偏差处理结论回填追溯矩阵"]
     },
@@ -68,7 +77,7 @@
       "coverage": "partial",
       "confidence": 58,
       "summary": "验证报告结论完整，但原始记录索引不稳定。",
-      "linkedEntities": ["RSK-TRACE-GAP", "CTRL-TRACE-MATRIX"],
+      "linkedEntities": ["GAP-TRACE-GAP", "CTRL-TRACE-MATRIX"],
       "gaps": ["3 个测试样本缺少原始记录页码", "结论语气强于当前证据链"],
       "suggestedActions": ["补充原始记录页码", "将结论改为与证据强度一致的表述"]
     },
@@ -80,7 +89,7 @@
       "coverage": "partial",
       "confidence": 62,
       "summary": "风险控制措施已列出，但剩余风险评价与验证证据链接不足。",
-      "linkedEntities": ["OBL-TRACEABILITY", "RSK-TRACE-GAP"],
+      "linkedEntities": ["OBL-TRACEABILITY", "GAP-TRACE-GAP"],
       "gaps": ["剩余风险评价未引用验证报告章节", "风险管理评审签核状态未确认"],
       "suggestedActions": ["关联验证报告章节", "补充风险管理评审签核状态"]
     },
@@ -92,7 +101,7 @@
       "coverage": "missing",
       "confidence": 34,
       "summary": "CAPA 台账存在措施完成证据，但缺少有效性确认记录。",
-      "linkedEntities": ["OBL-CAPA-EFFECTIVENESS", "RSK-RECURRING-CAPA", "CTRL-CAPA-REVIEW"],
+      "linkedEntities": ["OBL-CAPA-EFFECTIVENESS", "GAP-RECURRING-CAPA", "CTRL-CAPA-REVIEW"],
       "gaps": ["3 个 CAPA 未附有效性确认", "复发趋势判断缺失"],
       "suggestedActions": ["补充有效性确认截图或记录", "加入复发趋势复核结论"]
     },
@@ -104,7 +113,7 @@
       "coverage": "partial",
       "confidence": 54,
       "summary": "措施执行记录存在，但培训对象与影响范围未完全一致。",
-      "linkedEntities": ["RSK-RECURRING-CAPA", "CTRL-CAPA-REVIEW"],
+      "linkedEntities": ["GAP-RECURRING-CAPA", "CTRL-CAPA-REVIEW"],
       "gaps": ["生产班组 B 未见培训签到", "培训效果评价缺失"],
       "suggestedActions": ["补齐培训签到", "补充培训效果评价"]
     },
@@ -116,9 +125,21 @@
       "coverage": "partial",
       "confidence": 60,
       "summary": "主要 claims 已映射验证报告，但部分性能表述缺少风险管理和测试记录双重引用。",
-      "linkedEntities": ["CLA-REG-TECH-FILE", "OBL-TRACEABILITY", "RSK-TRACE-GAP"],
+      "linkedEntities": ["CLA-REG-TECH-FILE", "OBL-TRACEABILITY", "GAP-TRACE-GAP"],
       "gaps": ["2 条性能 claims 缺少测试记录编号", "1 条安全性表述缺少风险控制引用"],
       "suggestedActions": ["补充测试记录编号", "将 claims 映射到风险控制措施"]
+    },
+    {
+      "id": "EVR-SUP-001",
+      "title": "供应商变更影响评估",
+      "sourceFile": "PF-SUP-CHANGE-001",
+      "evidenceType": "supplier_change_record",
+      "coverage": "partial",
+      "confidence": 52,
+      "summary": "变更记录列出新供应商资质，但缺少注册影响、检验策略和质量协议更新证据。",
+      "linkedEntities": ["CTRL-SUPPLIER-GATE", "EVD-SUP-CHANGE", "GAP-SUPPLIER-CHANGE"],
+      "gaps": ["未见注册影响评估结论", "来料检验策略未说明是否调整", "质量协议版本未更新"],
+      "suggestedActions": ["补充注册影响评估", "确认来料检验策略", "更新或确认质量协议版本"]
     }
   ],
   "sources": [
@@ -151,6 +172,12 @@
       "title": "2026 Q2 内审发现摘录",
       "kind": "finding",
       "path": "workspace/neuro-pump/findings/internal-audit-q2.md"
+    },
+    {
+      "id": "SRC-PROJ-SUPPLIER-CHANGE",
+      "title": "关键物料供应商变更记录",
+      "kind": "project_evidence",
+      "path": "workspace/neuro-pump/supplier/key-material-change.md"
     }
   ],
   "entities": [
@@ -173,8 +200,8 @@
     {
       "id": "OBL-TRACEABILITY",
       "type": "obligation",
-      "title": "需求-风险-验证可追溯",
-      "summary": "用户需求、设计输入、风险控制、验证项目和结论之间应保持可追溯。",
+      "title": "需求-控制-验证可追溯",
+      "summary": "用户需求、设计输入、控制措施、验证项目和结论之间应保持可追溯。",
       "severity": "critical",
       "sourceRefs": ["SRC-ISO-13485-7-3", "SRC-NMPA-REG-DOSSIER"]
     },
@@ -187,34 +214,34 @@
       "sourceRefs": ["SRC-QMS-CAPA"]
     },
     {
-      "id": "RSK-TRACE-GAP",
-      "type": "risk",
+      "id": "GAP-TRACE-GAP",
+      "type": "gap",
       "title": "验证证据链断点",
-      "summary": "报告结论与测试记录、风险控制或需求条目之间缺少明确引用。",
+      "summary": "报告结论与测试记录、控制措施或需求条目之间缺少明确引用。",
       "severity": "critical",
       "sourceRefs": ["SRC-PROJ-VV-001", "SRC-FINDING-AUD-2026-04"]
     },
     {
-      "id": "RSK-RECURRING-CAPA",
-      "type": "risk",
-      "title": "重复 CAPA 关闭质量不足",
+      "id": "GAP-RECURRING-CAPA",
+      "type": "gap",
+      "title": "重复 CAPA 关闭证据不足",
       "summary": "多个发现显示措施关闭后缺少有效性验证或复发监控。",
       "severity": "high",
       "sourceRefs": ["SRC-QMS-CAPA", "SRC-FINDING-AUD-2026-04"]
     },
     {
-      "id": "RSK-SUPPLIER-CHANGE",
-      "type": "risk",
-      "title": "供应商变更影响未评估",
+      "id": "GAP-SUPPLIER-CHANGE",
+      "type": "gap",
+      "title": "供应商变更影响证据不足",
       "summary": "关键物料供应商变更与来料检验、质量协议、注册影响未形成闭环。",
       "severity": "high",
-      "sourceRefs": ["SRC-NMPA-REG-DOSSIER"]
+      "sourceRefs": ["SRC-PROJ-SUPPLIER-CHANGE"]
     },
     {
       "id": "CTRL-TRACE-MATRIX",
       "type": "control",
       "title": "设计追溯矩阵",
-      "summary": "用矩阵连接需求、风险控制、验证样本、偏差和最终结论。",
+      "summary": "用矩阵连接需求、控制措施、验证样本、偏差和最终结论。",
       "severity": "critical",
       "sourceRefs": ["SRC-PROJ-VV-001"]
     },
@@ -249,19 +276,27 @@
       "summary": "3 个 CAPA 关闭记录未附有效性确认截图或趋势复核结论。",
       "severity": "high",
       "sourceRefs": ["SRC-FINDING-AUD-2026-04"]
+    },
+    {
+      "id": "EVD-SUP-CHANGE",
+      "type": "evidence",
+      "title": "供应商变更评估草稿",
+      "summary": "列出新供应商资质，但注册影响、检验策略和质量协议版本证据不足。",
+      "severity": "high",
+      "sourceRefs": ["SRC-PROJ-SUPPLIER-CHANGE"]
     }
   ],
   "relations": [
     { "id": "REL-001", "from": "CLA-7-3-9", "to": "OBL-TRACEABILITY", "type": "creates_obligation" },
     { "id": "REL-002", "from": "CLA-REG-TECH-FILE", "to": "OBL-TRACEABILITY", "type": "creates_obligation" },
-    { "id": "REL-003", "from": "CLA-7-3-9", "to": "RSK-TRACE-GAP", "type": "identifies_risk" },
     { "id": "REL-004", "from": "OBL-TRACEABILITY", "to": "CTRL-TRACE-MATRIX", "type": "satisfied_by" },
-    { "id": "REL-005", "from": "CTRL-TRACE-MATRIX", "to": "RSK-TRACE-GAP", "type": "mitigates" },
+    { "id": "REL-005", "from": "CTRL-TRACE-MATRIX", "to": "GAP-TRACE-GAP", "type": "addresses_gap" },
     { "id": "REL-006", "from": "OBL-CAPA-EFFECTIVENESS", "to": "CTRL-CAPA-REVIEW", "type": "satisfied_by" },
-    { "id": "REL-007", "from": "CTRL-CAPA-REVIEW", "to": "RSK-RECURRING-CAPA", "type": "mitigates" },
-    { "id": "REL-008", "from": "CTRL-SUPPLIER-GATE", "to": "RSK-SUPPLIER-CHANGE", "type": "mitigates" },
-    { "id": "REL-009", "from": "EVD-VV-TRACE", "to": "RSK-TRACE-GAP", "type": "indicates_risk" },
-    { "id": "REL-010", "from": "EVD-CAPA-LOG", "to": "RSK-RECURRING-CAPA", "type": "indicates_risk" }
+    { "id": "REL-007", "from": "CTRL-CAPA-REVIEW", "to": "GAP-RECURRING-CAPA", "type": "addresses_gap" },
+    { "id": "REL-008", "from": "CTRL-SUPPLIER-GATE", "to": "GAP-SUPPLIER-CHANGE", "type": "addresses_gap" },
+    { "id": "REL-009", "from": "EVD-VV-TRACE", "to": "GAP-TRACE-GAP", "type": "reveals_gap" },
+    { "id": "REL-010", "from": "EVD-CAPA-LOG", "to": "GAP-RECURRING-CAPA", "type": "reveals_gap" },
+    { "id": "REL-011", "from": "EVD-SUP-CHANGE", "to": "GAP-SUPPLIER-CHANGE", "type": "reveals_gap" }
   ],
   "findings": [
     {
@@ -272,7 +307,7 @@
       "findingDate": "2026-06-18",
       "status": "open",
       "description": "验证报告结论引用了风险控制完成，但部分测试记录编号未在追溯矩阵中出现。",
-      "relatedRisks": ["RSK-TRACE-GAP"],
+      "relatedGaps": ["GAP-TRACE-GAP"],
       "relatedControls": ["CTRL-TRACE-MATRIX"],
       "affectedFunctions": ["R&D", "QA", "RA"],
       "recurrenceSignal": "recurring",
@@ -288,7 +323,7 @@
       "findingDate": "2026-06-21",
       "status": "triage",
       "description": "CAPA 关闭记录存在措施完成截图，但缺少有效性确认和复发趋势判断。",
-      "relatedRisks": ["RSK-RECURRING-CAPA"],
+      "relatedGaps": ["GAP-RECURRING-CAPA"],
       "relatedControls": ["CTRL-CAPA-REVIEW"],
       "affectedFunctions": ["QA", "Manufacturing"],
       "recurrenceSignal": "systemic",
@@ -304,13 +339,13 @@
       "auditScope": "研发验证报告与注册资料一致性",
       "priority": "critical",
       "status": "candidate",
-      "rationale": "高风险条款 CLA-7-3-9 与注册资料完整性要求共同指向追溯链路；FND-2026-Q2-01 显示该链路已有重复断点。",
+      "rationale": "条款 CLA-7-3-9 与注册资料完整性要求共同指向追溯链路；FND-2026-Q2-01 显示该链路已有重复证据断点。",
       "targetFunctions": ["R&D", "QA", "RA"],
       "sourceFindings": ["FND-2026-Q2-01"],
-      "sourceRisks": ["RSK-TRACE-GAP"],
+      "sourceGaps": ["GAP-TRACE-GAP"],
       "sourceControls": ["CTRL-TRACE-MATRIX"],
       "sourceClauses": ["CLA-7-3-9", "CLA-REG-TECH-FILE"],
-      "suggestedChecks": ["抽查高风险需求的测试记录编号是否回填追溯矩阵", "确认偏差处理是否支持最终结论", "检查注册资料 claims 是否与验证结论一致"],
+      "suggestedChecks": ["抽查关键需求的测试记录编号是否回填追溯矩阵", "确认偏差处理是否支持最终结论", "检查注册资料 claims 是否与验证结论一致"],
       "evidenceNeeded": ["追溯矩阵最新版", "测试原始记录", "偏差关闭记录", "注册资料 claims 列表"],
       "owner": "QA Lead",
       "dueDate": "2026-07-26"
@@ -324,7 +359,7 @@
       "rationale": "FND-2026-Q2-02 呈 systemic 信号，说明 CAPA 关闭证据可能不足，需要在正式评审前检查有效性闭环。",
       "targetFunctions": ["QA", "Manufacturing"],
       "sourceFindings": ["FND-2026-Q2-02"],
-      "sourceRisks": ["RSK-RECURRING-CAPA"],
+      "sourceGaps": ["GAP-RECURRING-CAPA"],
       "sourceControls": ["CTRL-CAPA-REVIEW"],
       "sourceClauses": [],
       "suggestedChecks": ["抽查 CAPA 是否定义根因与有效性标准", "确认关闭前是否有趋势复核", "检查复发监控责任人与周期"],
@@ -336,15 +371,15 @@
   "wikiPages": [
     {
       "id": "WIKI-TRACEABILITY",
-      "title": "需求-风险-验证追溯",
-      "entityRefs": ["CLA-7-3-9", "CLA-REG-TECH-FILE", "OBL-TRACEABILITY", "RSK-TRACE-GAP", "CTRL-TRACE-MATRIX", "EVD-VV-TRACE"],
+      "title": "需求-控制-验证追溯",
+      "entityRefs": ["CLA-7-3-9", "CLA-REG-TECH-FILE", "OBL-TRACEABILITY", "GAP-TRACE-GAP", "CTRL-TRACE-MATRIX", "EVD-VV-TRACE"],
       "summary": "追溯链路是注册前自查的最高优先级主题。当前样例显示验证报告结论存在证据引用缺口，需要 R&D、QA、RA 共同复核。",
       "sourceRefs": ["SRC-ISO-13485-7-3", "SRC-NMPA-REG-DOSSIER", "SRC-PROJ-VV-001"]
     },
     {
       "id": "WIKI-CAPA",
       "title": "CAPA 有效性闭环",
-      "entityRefs": ["OBL-CAPA-EFFECTIVENESS", "RSK-RECURRING-CAPA", "CTRL-CAPA-REVIEW", "EVD-CAPA-LOG"],
+      "entityRefs": ["OBL-CAPA-EFFECTIVENESS", "GAP-RECURRING-CAPA", "CTRL-CAPA-REVIEW", "EVD-CAPA-LOG"],
       "summary": "CAPA 不应只证明措施完成，还需要证明措施有效并监控复发。当前 systemic 信号适合转为近期自查候选。",
       "sourceRefs": ["SRC-QMS-CAPA", "SRC-FINDING-AUD-2026-04"]
     }

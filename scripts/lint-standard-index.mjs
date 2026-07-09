@@ -29,6 +29,14 @@ for (const doc of index.documents) {
   if (!Array.isArray(doc.requirementSignals)) {
     throw new Error(`${doc.id} requirementSignals must be an array`);
   }
+  if (!Array.isArray(doc.candidateEntities)) {
+    throw new Error(`${doc.id} candidateEntities must be an array`);
+  }
+  for (const entity of doc.candidateEntities) {
+    if (entity.type === "risk" || entity.type === "gap") {
+      throw new Error(`${doc.id} standard candidate entity must be neutral, got ${entity.type}`);
+    }
+  }
   if (!Number.isInteger(doc.readinessScore) || doc.readinessScore < 0 || doc.readinessScore > 100) {
     throw new Error(`${doc.id} readinessScore must be 0-100`);
   }

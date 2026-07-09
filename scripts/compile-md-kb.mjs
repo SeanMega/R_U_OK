@@ -161,9 +161,9 @@ function inferCandidateEntities(text) {
   add("clause", "风险管理过程要求", /risk management|风险管理|14971|0316/i);
   add("obligation", "设计开发与追溯义务", /design and development|设计和开发|traceability|追溯/i);
   add("obligation", "生产和上市后信息收集义务", /post-production|上市后|生产后|information collection/i);
-  add("risk", "生物相容性评价缺口", /biological evaluation|生物学评价|16886/i);
-  add("risk", "灭菌过程确认不足", /sterilization|灭菌|18279|18280/i);
-  add("risk", "电气安全与基本性能风险", /electrical|电气|9706|60601/i);
+  add("evaluation_topic", "生物学评价主题", /biological evaluation|生物学评价|16886/i);
+  add("process_requirement", "灭菌过程确认要求", /sterilization|灭菌|18279|18280/i);
+  add("safety_performance_topic", "电气安全与基本性能主题", /electrical|电气|9706|60601/i);
   add("control", "风险管理文件与评审控制", /risk management file|风险管理文档|risk management review|风险管理评审/i);
   add("control", "采购与供应商控制", /purchasing|采购|supplier|供应商/i);
   return entities;
@@ -195,10 +195,10 @@ function buildReviewPrompts(domains, signals, entities) {
 
   add(domains.includes("quality_system"), "确认该标准与质量手册、程序文件、记录控制和管理评审的覆盖关系。");
   add(domains.includes("risk_management"), "检查风险管理计划、风险分析、风险控制、剩余风险评价和风险管理报告是否形成闭环。");
-  add(domains.includes("biocompatibility"), "核对生物学评价项目选择、样品代表性、测试报告和毒理学风险评价是否可追溯。");
+  add(domains.includes("biocompatibility"), "核对生物学评价项目选择、样品代表性、测试报告和毒理学评价依据是否可追溯。");
   add(domains.includes("sterilization"), "核对灭菌过程开发、确认、常规监视和放行记录是否支持无菌状态声明。");
   add(domains.includes("electrical_safety"), "确认基本安全和基本性能要求是否映射到型式试验、风险控制和说明书警示。");
-  add(signals.includes("supplier_control"), "确认采购信息、供应商资质、质量协议和来料检验策略是否与风险等级匹配。");
+  add(signals.includes("supplier_control"), "确认采购信息、供应商资质、质量协议和来料检验策略是否与物料重要度匹配。");
   add(signals.includes("post_market"), "确认生产和上市后信息是否进入风险管理和 CAPA 触发机制。");
   add(entities.some((entity) => entity.type === "control"), "将控制措施映射到 evidence_needed，避免只有要求没有证据。");
 

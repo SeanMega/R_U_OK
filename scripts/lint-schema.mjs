@@ -11,6 +11,16 @@ for (const key of required) {
 
 const ids = new Set(data.entities.map((entity) => entity.id));
 const projectFileIds = new Set(data.projectFiles.map((file) => file.id));
+const allowedEntityTypes = new Set(["clause", "obligation", "gap", "control", "evidence"]);
+const allowedRelationTypes = new Set([
+  "creates_obligation",
+  "identifies_evidence_need",
+  "satisfied_by",
+  "addresses_gap",
+  "reveals_gap",
+  "drives_audit_item",
+  "checks_control"
+]);
 
 for (const entity of data.entities) {
   for (const field of ["id", "type", "title", "summary", "sourceRefs"]) {
@@ -18,11 +28,23 @@ for (const entity of data.entities) {
       throw new Error(`entity ${entity.id || "<unknown>"} missing ${field}`);
     }
   }
+  if (!allowedEntityTypes.has(entity.type)) {
+    throw new Error(`entity ${entity.id} has unsupported type ${entity.type}`);
+  }
+  if (entity.type === "gap") {
+    const sourceKinds = entity.sourceRefs.map((sourceRef) => data.sources.find((source) => source.id === sourceRef)?.kind);
+    if (sourceKinds.some((kind) => kind === "standard" || kind === "regulation")) {
+      throw new Error(`gap entity ${entity.id} must be derived from workspace evidence, findings, or human input`);
+    }
+  }
 }
 
 for (const relation of data.relations) {
   if (!ids.has(relation.from) || !ids.has(relation.to)) {
     throw new Error(`relation ${relation.id} references an unknown entity`);
+  }
+  if (!allowedRelationTypes.has(relation.type)) {
+    throw new Error(`relation ${relation.id} has unsupported type ${relation.type}`);
   }
 }
 
